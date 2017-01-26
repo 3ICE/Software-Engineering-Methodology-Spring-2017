@@ -4,14 +4,14 @@ String name = "";
 Jet j1;
 
 void setup() {
-  size(640, 480, P2D);
+  size(640, 480, P2D); //We have to use a renderer
   j1 = new Jet();
   // DON'T Create the font
   //textFont(createFont("arial.ttf", 36));
 }
 
 void draw() {
-  background(120,229,229); // Set background to black
+  background(120,229,229); // Set background to ugly teal
   j1.display();
   // Draw the letter to the center of the screen
   textSize(14);
