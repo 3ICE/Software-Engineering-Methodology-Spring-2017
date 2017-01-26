@@ -1,15 +1,18 @@
 char c;
 String name = "";
 
+Jet j1;
+
 void setup() {
-  size(640, 480);
+  size(640, 480, P2D);
+  j1 = new Jet();
   // DON'T Create the font
   //textFont(createFont("arial.ttf", 36));
 }
 
 void draw() {
-  background(0); // Set background to black
-
+  background(120,229,229); // Set background to black
+  j1.display();
   // Draw the letter to the center of the screen
   textSize(14);
   text("Click on the program, then type your name", 50, 50);
