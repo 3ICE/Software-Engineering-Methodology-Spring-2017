@@ -3,10 +3,12 @@ char c;
 String name = "";
 boolean displayNameInput = true;
 Jet j1;
+StoryDisplay storyDisplay;
 
 void setup() {
   size(640, 480, P2D); //We have to use a renderer
   j1 = new Jet();
+  storyDisplay = new StoryDisplay();
   // DON'T Create the font
   //textFont(createFont("arial.ttf", 36));
 }
@@ -22,6 +24,10 @@ void draw() {
     text("Click on the program, then type your name", 50, 50);
     text("Current key: " + c, 50, 70);
     text("Your name is " + name.length() +  " characters long", 50, 90);
+  }
+  if(storyDisplay.visible){
+    storyDisplay.update();
+    storyDisplay.display();
   }
   textSize(36);
   text(name, 50, 120, 540, 300);
@@ -42,6 +48,10 @@ void keyTyped() {
 
 void keyPressed(){
   if(key == ENTER || key == RETURN){
+    // if the input was on, it's story time
+    if(displayNameInput){
+      storyDisplay.visible = true; 
+    }
     displayNameInput = false;
   }
 }
