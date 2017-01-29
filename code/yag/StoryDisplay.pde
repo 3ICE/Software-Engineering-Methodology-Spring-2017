@@ -49,6 +49,7 @@ class StoryDisplay{
   void display(){
     if(visible){
       textSize(14);
+      fill(255); // updated by Mengyang, otherwise overrided by other color
       text(storyLine[currentLine], 50, 50, 300, 100);
     }
   }
