@@ -56,4 +56,36 @@ void keyPressed(){
     }
     displayNameInput = false;
   }
+  
+  if(keyCode == UP)
+  {
+    j1.speedUp();
+  }
+  else if(keyCode == DOWN)
+  {
+    j1.slowDown();
+  }
+  else if(keyCode == LEFT)
+  {
+    j1.moveLeft();
+  }
+  else if(keyCode == RIGHT)
+  {
+    j1.moveRight();
+  }
+}
+
+void keyReleased() {
+  if(keyCode == UP)
+  {
+    j1.slowDown();
+  }
+  else if(keyCode == DOWN)
+  {
+    j1.speedUp();
+  }
+  else if (keyCode == LEFT || keyCode == RIGHT)
+  {
+    j1.reset();
+  }
 }

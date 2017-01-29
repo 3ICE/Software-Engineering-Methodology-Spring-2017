@@ -4,13 +4,15 @@ class Jet
   PVector location;
   PVector velocity;
   PVector acceleration; // set the value when pressing up key
-  float topspeed;
+  float topspeed; // maximum speed allowed
   
+  // constructor
   Jet()
   {
     location = new PVector(width/2, height/2);
     velocity = new PVector(0,-1);
-    topspeed = 4;
+    //acceleration = new PVector(5,5);
+    topspeed = 10;
     // create the shape of the Jet
     s = createShape();
     s.beginShape();
@@ -24,6 +26,7 @@ class Jet
     s.endShape(CLOSE);
   }
   
+  // show the jet in the background
   void display()
   {
     pushMatrix();
@@ -32,11 +35,39 @@ class Jet
     popMatrix();
   }
   
+  // change velocity by press keyboard up, down, left, right
+  void speedUp()
+  {
+    velocity.y *= 5;
+  }
+  
+  void slowDown()
+  {
+    velocity.y *= 0.2;
+  }
+  
+  void moveLeft()
+  {
+    velocity.x = -1;
+  }
+  
+  void moveRight()
+  {
+    velocity.x = 1;
+  }
+  
+  void reset()
+  {
+    velocity.x = 0;
+  }
+  
+  // update the location of the jet
   void update()
   {
     location.add(velocity);
   }
   
+  // check collisions
   void checkEdges()
   {
     if(location.y<0)
@@ -47,8 +78,16 @@ class Jet
     {
       location.y = 0;
     }
+    if(location.x > width)
+    {
+      location.x = width;
+    }
+    if(location.x < 0)
+    {
+      location.x = 0;
+    }
   }
   
-  
+  // shoot a bullet
   void Shoot(){}
 }
