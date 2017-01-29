@@ -17,7 +17,9 @@ void draw() {
   
   
   background(120,229,229); // Set background to ugly teal
+  j1.update();
   j1.display();
+  j1.checkEdges();
   if(displayNameInput){
     // Draw the letter to the center of the screen
     textSize(14);
