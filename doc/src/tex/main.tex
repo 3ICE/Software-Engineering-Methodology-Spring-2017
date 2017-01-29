@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{eurosym}
+\usepackage[hyphens]{url}
+\usepackage{booktabs}
+\usepackage{amsmath, amsfonts}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage{float}
+\usepackage{listings}
+\usepackage[xindy]{glossaries}
+\usepackage{tabularx}
+\usepackage{courier}
+\usepackage{vhistory}
+\usepackage{caption}
+\usepackage{xcolor, colortbl}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{YAG}
+\chead{Project plan}
+\rhead{Version \vhCurrentVersion}
+\lfoot{Modified \vhCurrentDate}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\definecolor{Gray}{gray}{0.85}
+
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+
+\begin{document}
+
+\input{titlepage}
+
+\tableofcontents
+
+\include{resources}
+
+\include{diary}
+
+\include{risks}
+
+\end{document}
