@@ -3,14 +3,16 @@ char c;
 String name = "";
 boolean displayNameInput = true;
 Jet j1;
-Riverbank rightBank;
+Riverbank bank;
+Island island;
 StoryDisplay storyDisplay;
 
 void setup() {
   size(640, 480, P2D); //We have to use a renderer
   j1 = new Jet();
-  rightBank = new Riverbank(40,height);
+  bank = new Riverbank(40,height*10);
   storyDisplay = new StoryDisplay();
+  island = new Island();
   // DON'T Create the font
   //textFont(createFont("arial.ttf", 36));
 }
@@ -18,9 +20,15 @@ void setup() {
 void draw() {
   
   
-  background(120,229,229); // Set background to ugly teal
-  rightBank.display();
-  rightBank.detectCollision(j1);
+  background(120,229,229); // Set background to ugly teal, actually it is the river
+  // draw the bank
+  bank.display();
+  bank.update();
+  bank.detectCollision(j1);
+  // draw the Island
+  island.update();
+  island.display();
+  // draw the Jet
   j1.update();
   j1.display();
   j1.checkEdges();
@@ -64,11 +72,11 @@ void keyPressed(){
   
   if(keyCode == UP)
   {
-    j1.speedUp();
+    j1.accelerate();
   }
   else if(keyCode == DOWN)
   {
-    j1.slowDown();
+    j1.decelerate();
   }
   else if(keyCode == LEFT)
   {
@@ -81,16 +89,12 @@ void keyPressed(){
 }
 
 void keyReleased() {
-  if(keyCode == UP)
+  if(keyCode == UP || keyCode == DOWN)
   {
-    j1.slowDown();
-  }
-  else if(keyCode == DOWN)
-  {
-    j1.speedUp();
+    j1.resetY();
   }
   else if (keyCode == LEFT || keyCode == RIGHT)
   {
-    j1.reset();
+    j1.resetX();
   }
 }

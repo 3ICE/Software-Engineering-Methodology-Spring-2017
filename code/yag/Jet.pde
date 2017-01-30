@@ -1,8 +1,6 @@
-class Jet
+class Jet extends Gameobject
 {
   PShape s;
-  PVector location;
-  PVector velocity;
   PVector acceleration; // set the value when pressing up key
   float topspeed; // maximum speed allowed
   float radius; // radius of the Jet
@@ -10,8 +8,8 @@ class Jet
   // constructor
   Jet()
   {
-    location = new PVector(width/2, height/2);
-    velocity = new PVector(0,-1);
+    location = new PVector(width/2, height-radius);
+    velocity = new PVector(0,0);
     //acceleration = new PVector(5,5);
     topspeed = 10;
     // create the shape of the Jet
@@ -38,14 +36,14 @@ class Jet
   }
   
   // change velocity by press keyboard up, down, left, right
-  void speedUp()
+  void accelerate()
   {
-    velocity.y *= 5;
+    velocity.y = -5;
   }
   
-  void slowDown()
+  void decelerate()
   {
-    velocity.y *= 0.2;
+    velocity.y = 5;
   }
   
   void moveLeft()
@@ -57,36 +55,27 @@ class Jet
   {
     velocity.x = 3;
   }
+
+  void resetY()
+  {
+    velocity.y = 0;
+  }
   
-  void reset()
+  void resetX()
   {
     velocity.x = 0;
   }
   
-  // update the location of the jet
-  void update()
-  {
-    location.add(velocity);
-  }
-  
-  // check collisions
+  // check collisions with borders
   void checkEdges()
   {
-    if(location.y<0)
+    if(location.y-radius <= 0)
     {
-      location.y = height;
+      location.y = radius;
     }
-    if(location.y>height)
+    if(location.y+radius>=height)
     {
-      location.y = 0;
-    }
-    if(location.x > width)
-    {
-      location.x = width;
-    }
-    if(location.x < 0)
-    {
-      location.x = 0;
+      location.y = height-radius;
     }
   }
   

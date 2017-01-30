@@ -1,16 +1,11 @@
-class Riverbank
+class Riverbank extends Gameobject
 {
-  //float x;
-  //float y;
-  float w; // width of the bank
-  float h; // height of the bank
   
   Riverbank(float w,float h)
   {
-    //this.x = x;
-    //this.y = y;
-    this.w = w;
-    this.h = h;
+    super();
+    size = new PVector(w,h);
+    this.location = new PVector(0,height-h);
   }
   
   // 
@@ -18,20 +13,14 @@ class Riverbank
   {
     fill(0,255,0);
     noStroke();
-    rect(width-w,0,w,h);
-    rect(0,0,w,h);
-  }
-  
-  // should randomly change the width of the bank during the game? how to do it!!!!
-  void update()
-  {
-    
+    rect(0,location.y,size.x,size.y);
+    rect(width-size.x,location.y,size.x,size.y);
   }
   
   // 
   void detectCollision(Jet jet)
   {
-    if ((jet.location.x + jet.radius >= (width-w)) || (jet.location.x - jet.radius <= (w)))
+    if ((jet.location.x + jet.radius >= (width-size.x)) || (jet.location.x - jet.radius <= size.x))
     {
       jet.destory();
     }
