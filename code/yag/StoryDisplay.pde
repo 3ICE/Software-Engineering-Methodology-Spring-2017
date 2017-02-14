@@ -1,14 +1,10 @@
 /* This class is used to display the story in the beginning of the game. */
-class StoryDisplay{
-  
-  // This should only be visible after the name has been input and before the whole
-  // story has been displayed
-  boolean visible = false;
-  
+class StoryDisplay extends GameObject {
+
   int startTime = 0;
   int currentLine = 0;
   int frameDuration = 3000;
-  
+
   // Here's the story, we could also load it from a file
   String[] storyLine = {
      "In a small town next to a big river,",
@@ -25,33 +21,32 @@ class StoryDisplay{
      "And thus, it began: many young and brave jets set on their quest to replenish the source of life.",
      "If only they could get far enough upstream, the answers would be found, and their families saved..."
   };
-  
+
   int storyLength = 13;
-  
-  StoryDisplay(){
-      
-  }
-  
-  void update(){
+
+  StoryDisplay() { }
+
+  public void update(Meta meta){
     // First draw
     if(startTime == 0){
       startTime = millis();
     }
-    
+
     int currentTime = millis();
-    
+
     currentLine = (currentTime - startTime) / frameDuration;
     if(currentLine >= storyLength){
-       visible = false; 
+      meta.onStoryFinished();
+    } else {
+      display();
     }
   }
-  
+
   void display(){
-    if(visible){
-      textSize(14);
-      fill(255); // updated by Mengyang, otherwise overrided by other color
-      text(storyLine[currentLine], 50, 50, 300, 100);
-    }
+    textSize(16);
+    fill(0);
+    textAlign(CENTER);
+    text(storyLine[currentLine], width / 2 - 150, height / 2 - 50, 300, 100);
   }
-  
+
 }

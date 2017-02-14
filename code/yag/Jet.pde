@@ -1,10 +1,10 @@
-class Jet extends Gameobject
+class Jet extends RiverObject
 {
   PShape s;
   PVector acceleration; // set the value when pressing up key
   float topspeed; // maximum speed allowed
   float radius; // radius of the Jet
-  
+
   // constructor
   Jet()
   {
@@ -25,7 +25,31 @@ class Jet extends Gameobject
     s.vertex(-radius, 40);
     s.endShape(CLOSE);
   }
-  
+
+  void update(Meta meta) {
+    if (meta.getState(KeyEvent.VK_UP)) {
+      velocity.y = -5;
+    } else if (meta.getState(KeyEvent.VK_DOWN)) {
+      velocity.y = 5;
+    } else {
+      velocity.y = 0;
+    }
+
+    if (meta.getState(KeyEvent.VK_LEFT)) {
+      velocity.x = -3;
+    } else if (meta.getState(KeyEvent.VK_RIGHT)) {
+      velocity.x = 3;
+    } else {
+      velocity.x = 0;
+    }
+
+    super.update(meta);
+
+    checkEdges();
+
+    display();
+  }
+
   // show the jet in the background
   void display()
   {
@@ -34,38 +58,7 @@ class Jet extends Gameobject
     shape(s);
     popMatrix();
   }
-  
-  // change velocity by press keyboard up, down, left, right
-  void accelerate()
-  {
-    velocity.y = -5;
-  }
-  
-  void decelerate()
-  {
-    velocity.y = 5;
-  }
-  
-  void moveLeft()
-  {
-    velocity.x = -3;
-  }
-  
-  void moveRight()
-  {
-    velocity.x = 3;
-  }
 
-  void resetY()
-  {
-    velocity.y = 0;
-  }
-  
-  void resetX()
-  {
-    velocity.x = 0;
-  }
-  
   // check collisions with borders
   void checkEdges()
   {
@@ -78,12 +71,12 @@ class Jet extends Gameobject
       location.y = height-radius;
     }
   }
-  
+
   // shoot a bullet
   void Shoot(){}
-  
+
   // destoried by enermies
-  void destory()
+  void destroy()
   {
     // reset location of the Jet, later should be updated to destory
     location = new PVector(width/2, height/2);
