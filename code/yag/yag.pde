@@ -18,13 +18,15 @@ void setup() {
 void draw() {
   background(120, 229, 229); // Set background to ugly teal, actually it is the river
 
-  meta.update();
+  meta.update(meta);
+  meta.afterUpdate(meta);
+  meta.draw(meta);
 }
 
 void keyPressed() {
-  meta.setPressed(keyCode, key);
+  meta.inputManager.setPressed(keyCode, key);
 }
 
 void keyReleased() {
-  meta.setReleased(keyCode);
+  meta.inputManager.setReleased(keyCode);
 }

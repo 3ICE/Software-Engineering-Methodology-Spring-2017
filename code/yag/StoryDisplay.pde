@@ -37,12 +37,10 @@ class StoryDisplay extends GameObject {
     currentLine = (currentTime - startTime) / frameDuration;
     if(currentLine >= storyLength){
       meta.onStoryFinished();
-    } else {
-      display();
     }
   }
 
-  void display(){
+  void draw(Meta meta){
     textSize(16);
     fill(0);
     textAlign(CENTER);

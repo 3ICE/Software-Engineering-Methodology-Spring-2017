@@ -9,8 +9,9 @@ class Island extends RiverObject
     location = new PVector(width/2-size.x/2,-size.y);
   }
 
-  void display()
+  void draw(Meta meta)
   {
+    super.draw(meta);
     fill(58,127,6);
     noStroke();
     rect(location.x,location.y,size.x,size.y,15);
@@ -24,7 +25,6 @@ class Island extends RiverObject
       size = new PVector(random(400),random(300));
       location = new PVector(width/2-size.x/2,-size.y);
     }
-    display();
   }
 
 }

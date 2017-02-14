@@ -8,13 +8,9 @@ class Riverbank extends RiverObject
     this.location = new PVector(0,height-h);
   }
 
-  void update(Meta meta) {
-    super.update(meta);
-    display();
-  }
-
-  void display()
+  void draw(Meta meta)
   {
+    super.draw(meta);
     fill(0,255,0);
     noStroke();
     rect(0,location.y,size.x,size.y);

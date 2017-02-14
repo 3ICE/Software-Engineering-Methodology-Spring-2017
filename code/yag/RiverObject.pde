@@ -1,4 +1,4 @@
-class RiverObject
+class RiverObject extends GameObject
 {
   PVector location;
   PVector velocity;
@@ -7,10 +7,6 @@ class RiverObject
   RiverObject()
   {
     velocity = new PVector(0,1);
-  }
-
-  void display()
-  {
   }
 
   void update(Meta meta)

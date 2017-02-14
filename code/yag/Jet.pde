@@ -27,17 +27,17 @@ class Jet extends RiverObject
   }
 
   void update(Meta meta) {
-    if (meta.getState(KeyEvent.VK_UP)) {
+    if (meta.inputManager.getState(KeyEvent.VK_UP)) {
       velocity.y = -5;
-    } else if (meta.getState(KeyEvent.VK_DOWN)) {
+    } else if (meta.inputManager.getState(KeyEvent.VK_DOWN)) {
       velocity.y = 5;
     } else {
       velocity.y = 0;
     }
 
-    if (meta.getState(KeyEvent.VK_LEFT)) {
+    if (meta.inputManager.getState(KeyEvent.VK_LEFT)) {
       velocity.x = -3;
-    } else if (meta.getState(KeyEvent.VK_RIGHT)) {
+    } else if (meta.inputManager.getState(KeyEvent.VK_RIGHT)) {
       velocity.x = 3;
     } else {
       velocity.x = 0;
@@ -46,13 +46,13 @@ class Jet extends RiverObject
     super.update(meta);
 
     checkEdges();
-
-    display();
   }
 
   // show the jet in the background
-  void display()
+  void draw(Meta meta)
   {
+    super.draw(meta);
+    
     pushMatrix();
     translate(location.x, location.y);
     shape(s);

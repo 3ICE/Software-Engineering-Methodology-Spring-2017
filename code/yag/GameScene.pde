@@ -9,12 +9,13 @@ class GameScene extends GameObject {
     jet = new Jet();
     bank = new Riverbank(40,height*10);
     island = new Island();
+    gameObjects.add(bank);
+    gameObjects.add(island);
+    gameObjects.add(jet);
   }
 
   void update(Meta meta) {
-    bank.update(meta);
-    island.update(meta);
-    jet.update(meta);
+    super.update(meta);
 
     bank.detectCollision(jet);
   }
