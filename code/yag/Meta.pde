@@ -15,7 +15,7 @@ class Meta extends GameObject {
   public void onNameSubmit(String name) {
     playerName = name;
     gameObjects.remove(1);
-    StoryDisplay storyDisplay = new StoryDisplay();
+    StoryDisplay storyDisplay = new StoryDisplay(playerName);
     gameObjects.add(storyDisplay);
   }
 

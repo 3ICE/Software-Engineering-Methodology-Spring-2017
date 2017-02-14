@@ -8,7 +8,7 @@ class StoryDisplay extends GameObject {
   // Here's the story, we could also load it from a file
   String[] storyLine = {
      "In a small town next to a big river,",
-     "fighter jets had for years been living peacefully in coexistence with the surrounding nature.",
+     "Fighter jets had for years been peacefully coexisting with the surrounding nature.",
      "They had adapted to the life of fisher-jets: they survived by fishing stray fuel barrels from the river.",
      "However, recently, the fuel supply was not what it had been before.",
      "It seemed to have diminished greatly. This was naturally a cause of concern,",
@@ -24,7 +24,9 @@ class StoryDisplay extends GameObject {
 
   int storyLength = 13;
 
-  StoryDisplay() { }
+  StoryDisplay(String personalizedStoryName) {
+    storyLine[0] = "In a small town next to a big river, lived, " + personalizedStoryName + ".";
+  }
 
   public void update(Meta meta){
     // First draw

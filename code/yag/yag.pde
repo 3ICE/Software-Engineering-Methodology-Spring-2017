@@ -1,14 +1,5 @@
 import java.util.concurrent.Callable;
 
-// Are these really supposed to be global (*crying*)
-char c;
-String name = "";
-boolean displayNameInput = true;
-Jet j1;
-Riverbank bank;
-Island island;
-StoryDisplay storyDisplay;
-
 Meta meta = new Meta();
 
 void setup() {
