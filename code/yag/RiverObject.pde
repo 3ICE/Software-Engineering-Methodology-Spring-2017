@@ -11,6 +11,7 @@ class RiverObject extends GameObject
 
   void update(Meta meta)
   {
+    super.update(meta);
     location.add(velocity);
   }
 }
