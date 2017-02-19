@@ -5,7 +5,7 @@ class InputManager extends GameObject {
   private HashSet<Integer> pressed;
   private ArrayList<Character> chars;
 
-  InputManager() {
+  InputManager(){
     super();
 
     state = new HashSet<Integer>();
