@@ -9,7 +9,7 @@ class GameScene extends GameObject {
 
   ArrayList<BaseEnemy> enemies = new ArrayList<BaseEnemy>();
 
-  GameScene() {
+  GameScene(Meta meta) {
     jet = new Jet();
     bank = new Riverbank(40,height*10);
     island = new Island();
@@ -17,7 +17,7 @@ class GameScene extends GameObject {
     gameObjects.add(island);
     
     for(int i = 0; i < ENEMYCOUNT; i++){
-      BaseEnemy newEnemy = new BaseEnemy();
+      BaseEnemy newEnemy = new BaseEnemy(meta);
       enemies.add(newEnemy);
       gameObjects.add(newEnemy);
     }

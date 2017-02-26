@@ -4,6 +4,7 @@ Meta meta = new Meta();
 
 void setup() {
   size(640, 480, P2D); //We have to use a renderer
+  meta.loadImages();
 }
 
 void draw() {

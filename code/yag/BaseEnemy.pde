@@ -13,13 +13,11 @@ int ENEMYTYPES_SIZE = 5;
 class BaseEnemy extends RiverObject{
 
   EnemyType type;
-  int r;
-  int g;
-  int b;
+  PImage enemyPicture;
   
-  BaseEnemy()
+  BaseEnemy(Meta meta)
   {
-    refresh();
+    refresh(meta);
   }
 
   void draw(Meta meta)
@@ -28,50 +26,57 @@ class BaseEnemy extends RiverObject{
     fill(255,127,6);
     noStroke();
     rect(location.x,location.y,size.x,size.y,15);
+    image(enemyPicture, location.x, location.y);
   }
 
-  void initTanker(){
+  void initTanker(Meta meta){
     velocity = new PVector(1,1);
+    enemyPicture = meta.tempImage;
   }
   
-  void initHelicopter(){
+  void initHelicopter(Meta meta){
     velocity = new PVector(3,1);
+    enemyPicture = meta.helicopterImage;
   }
   
-  void initJet(){
+  void initJet(Meta meta){
     velocity = new PVector(5,1);
+    enemyPicture = meta.tempImage;
   }
   
-  void initFuelDepot(){
+  void initFuelDepot(Meta meta){
     velocity = new PVector(0,1);
+    enemyPicture = meta.tempImage;
   }
   
-  void initBridge(){
+  void initBridge(Meta meta){
     velocity = new PVector(0,1);
+    enemyPicture = meta.tempImage;
   }
 
   // We shall come out as a completely new person, uhh, jet.
-  void refresh(){
+  void refresh(Meta meta){
     // Beautifully randomize type...
     type = EnemyType.values()[((int)random(ENEMYTYPES_SIZE))];
     switch (type){
      case TANKER:
-       initTanker();
+       initTanker(meta);
        break;
      case HELICOPTER:
-       initHelicopter();
+       initHelicopter(meta);
        break;
      case FUELDEPOT:
-       initFuelDepot();
+       initFuelDepot(meta);
        break;  
      case JET:
-       initJet();
+       initJet(meta);
        break;
      case BRIDGE:
-       initBridge();
+       initBridge(meta);
        break; 
       default:
        velocity = new PVector(0,1);
+       enemyPicture = meta.tempImage;
        break;
     }
     
@@ -82,9 +87,10 @@ class BaseEnemy extends RiverObject{
   void update(Meta meta)
   {
     super.update(meta);
+
     if(location.y >= height + size.y/2)
     {
-      refresh();
+      refresh(meta);
     }
     // We are on the side: reverse x-velocity
     // (if we have none, it doesn't matter)
