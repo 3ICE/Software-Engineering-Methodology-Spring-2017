@@ -23,9 +23,6 @@ class BaseEnemy extends RiverObject{
   void draw(Meta meta)
   {
     super.draw(meta);
-    fill(255,127,6);
-    noStroke();
-    rect(location.x,location.y,size.x,size.y,15);
     image(enemyPicture, location.x, location.y);
   }
 
