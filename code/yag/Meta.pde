@@ -6,6 +6,10 @@ class Meta extends GameObject {
 
   PImage helicopterImage;
   PImage tempImage;
+  PImage bridgeImage;
+  PImage fuelImage;
+  PImage jetImage;
+  PImage tankerImage;
   
   Meta() {
     super();
@@ -18,6 +22,10 @@ class Meta extends GameObject {
   public void loadImages(){
     helicopterImage = loadImage("images/helicopter_placeholder.png");
     tempImage = loadImage("images/placeholder_placeholder.png");
+    bridgeImage = loadImage("images/bridge_placeholder.png");
+    fuelImage = loadImage("images/fuel_placeholder.png");
+    jetImage = loadImage("images/jet_placeholder.png");
+    tankerImage = loadImage("images/tanker_placeholder.png");
   }
 
   public void onNameSubmit(String name) {

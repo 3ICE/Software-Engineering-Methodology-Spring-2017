@@ -49,12 +49,16 @@ class BaseEnemy extends RiverObject{
   void initBridge(Meta meta){
     velocity = new PVector(0,1);
     enemyPicture = meta.tempImage;
+    size = new PVector(300, 100);
+
   }
 
   // We shall come out as a completely new person, uhh, jet.
   void refresh(Meta meta){
     // Beautifully randomize type...
     type = EnemyType.values()[((int)random(ENEMYTYPES_SIZE))];
+    size = new PVector(100, 100);
+
     switch (type){
      case TANKER:
        initTanker(meta);
@@ -77,7 +81,6 @@ class BaseEnemy extends RiverObject{
        break;
     }
     
-    size = new PVector(100, 100);
     location = new PVector(random(width), -random(height * 3) - size.y);
   }
 
