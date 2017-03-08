@@ -4,6 +4,7 @@ class GameScene extends GameObject {
   Jet jet;
   Riverbank bank;
   Island island;
+  FuelText fuelText;
 
   int ENEMYCOUNT = 10;
 
@@ -13,8 +14,10 @@ class GameScene extends GameObject {
     jet = new Jet();
     bank = new Riverbank(40,height*10);
     island = new Island();
+    fuelText = new FuelText(jet);
     gameObjects.add(bank);
     gameObjects.add(island);
+    gameObjects.add(fuelText);
     
     for(int i = 0; i < ENEMYCOUNT; i++){
       BaseEnemy newEnemy = new BaseEnemy(meta);

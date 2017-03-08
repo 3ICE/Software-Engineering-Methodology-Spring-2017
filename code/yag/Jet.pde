@@ -4,7 +4,8 @@ class Jet extends RiverObject
   PVector acceleration; // set the value when pressing up key
   float topspeed; // maximum speed allowed
   float radius; // radius of the Jet
-
+  float fuel;
+  
   // constructor
   Jet()
   {
@@ -14,6 +15,7 @@ class Jet extends RiverObject
     topspeed = 10;
     // create the shape of the Jet
     radius = 29;
+    fuel = 5000;
     s = createShape();
     s.beginShape();
     s.fill(102);
@@ -42,7 +44,8 @@ class Jet extends RiverObject
     } else {
       velocity.x = 0;
     }
-
+    
+    fuel--;
     super.update(meta);
 
     checkEdges();
