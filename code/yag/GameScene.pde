@@ -20,7 +20,7 @@ class GameScene extends GameObject {
     gameObjects.add(fuelText);
     
     for(int i = 0; i < ENEMYCOUNT; i++){
-      BaseEnemy newEnemy = new BaseEnemy(meta);
+      BaseEnemy newEnemy = new BaseEnemy(meta,jet);
       enemies.add(newEnemy);
       gameObjects.add(newEnemy);
     }

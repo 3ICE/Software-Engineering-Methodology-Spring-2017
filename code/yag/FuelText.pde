@@ -21,7 +21,7 @@ class FuelText extends RiverObject
   {
     super.draw(meta);
     textFont(f);
-    if(j1.fuel<1000)
+    if(j1.fuel<500)
     {
       fill(255,0,0);
     }

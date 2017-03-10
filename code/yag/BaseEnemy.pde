@@ -14,10 +14,12 @@ class BaseEnemy extends RiverObject{
 
   EnemyType type;
   PImage enemyPicture;
+  Jet j1;  // add the player for detection
   
-  BaseEnemy(Meta meta)
+  BaseEnemy(Meta meta,Jet j)
   {
     refresh(meta);
+    j1 = j;
   }
 
   void draw(Meta meta)
@@ -43,7 +45,7 @@ class BaseEnemy extends RiverObject{
   
   void initFuelDepot(Meta meta){
     velocity = new PVector(0,1);
-    enemyPicture = meta.tempImage;
+    enemyPicture = meta.fuelImage;
   }
   
   void initBridge(Meta meta){
@@ -96,6 +98,21 @@ class BaseEnemy extends RiverObject{
     // (if we have none, it doesn't matter)
     if(location.x < 0 || location.x > width - size.x * 0.5f){
       velocity.x = -velocity.x;
+    }
+    
+    // detect the fuel
+    if (type==EnemyType.FUELDEPOT)
+    {
+      if(j1.location.dist(this.location)<=j1.radius+70)
+      {
+          int jetVelocity = int(abs(j1.velocity.x)+abs(j1.velocity.y));
+          if (jetVelocity==0)
+          {
+            jetVelocity = 2;
+          }
+          j1.fuel += (100/jetVelocity)*10; //the slower the more fuel added
+          refresh(meta);
+      }
     }
   } 
   
