@@ -1,7 +1,9 @@
+import java.util.concurrent.CopyOnWriteArrayList;
+
 class GameObject
 {
   String collisionType;
-  ArrayList<GameObject> gameObjects;
+  CopyOnWriteArrayList<GameObject> gameObjects; //3ICE: Requesting CopyOnWriteArrayList for Concurrent modifications 
 
   GameObject() {
     this("object");
@@ -9,7 +11,7 @@ class GameObject
 
   GameObject(String collisionType) {
     this.collisionType = collisionType;
-    gameObjects = new ArrayList<GameObject>();
+    gameObjects = new CopyOnWriteArrayList<GameObject>();
   }
 
   public ArrayList<GameObject> getAllChildren() {

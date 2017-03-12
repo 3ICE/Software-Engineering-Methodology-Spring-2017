@@ -4,6 +4,9 @@ class Jet extends Entity {
   float topspeed; // maximum speed allowed
   int radius;
   int fuel;
+  float firingSpeedCooldown=180;
+  int lastTime = 0;
+  int delta = 0;
 
   // constructor
   Jet() {
@@ -69,6 +72,16 @@ class Jet extends Entity {
 
     super.update(meta);
   }
+  void afterUpdate(Meta meta) {
+    //println("b"+delta);
+    delta += millis() - lastTime;
+    //println("a"+delta);
+    if (delta > firingSpeedCooldown && meta.inputManager.getState(KeyEvent.VK_SPACE)) {
+      Shoot();
+    }
+    lastTime = millis();     
+    super.afterUpdate(meta);
+  }
 
   // show the jet in the background
   void draw(Meta meta)
@@ -82,9 +95,17 @@ class Jet extends Entity {
   }
 
   // shoot a bullet
-  void Shoot(){}
+  void Shoot()
+  {
+    println("Pew");
+    //for(GameObject go : meta.gameObjects){println(go);} //for(Bullet b : meta.bullets){println(b);}
+    delta = 0; //3ICE: Reset cooldown
+    //3ICE: This ConcurrentModificationException throw is rather annoying. Can we use ConcurrentArrayList? Then I wouldn't need a separate bullets array.
+    meta.gameObjects.add(new Bullet(new PVector(position.x, position.y-20), velocity));
+  }
 
-  // destoried by enermies
+
+  // destroyed by enemies
   void crash()
   {
     // reset position of the Jet, later should be updated to destory

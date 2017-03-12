@@ -12,7 +12,6 @@ class FuelText extends GameObject
     position = new PVector(width-50, 20);
   }
 
-  // show the jet in the background
   void draw(Meta meta)
   {
     super.draw(meta);
