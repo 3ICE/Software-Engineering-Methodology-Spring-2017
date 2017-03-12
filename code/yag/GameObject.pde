@@ -25,7 +25,6 @@ class GameObject
   }
 
   public boolean collidesWith(Meta meta, String otherType) {
-    println("Testing " + collisionType + " vs " + otherType);
     PVector[] collisionMask = getCollisionMask();
     for (GameObject other : meta.getAllChildren()) {
       if (other.collisionType == otherType) {
