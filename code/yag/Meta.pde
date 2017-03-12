@@ -3,6 +3,7 @@ import java.util.HashSet;
 class Meta extends GameObject {
   InputManager inputManager;
   private String playerName;
+  private boolean debugMode = true;
 
   PImage helicopterImage;
   PImage tempImage;
@@ -10,16 +11,25 @@ class Meta extends GameObject {
   PImage fuelImage;
   PImage jetImage;
   PImage tankerImage;
-  
+
   Meta() {
     super();
     inputManager = new InputManager();
     gameObjects.add(inputManager);
-    NameScreen nameScreen = new NameScreen();
-    gameObjects.add(nameScreen);
+
+    loadImages();
+
+    if (debugMode) {
+      playerName = "DEBUG";
+      GameScene gameScene = new GameScene(this);
+      gameObjects.add(gameScene);
+    } else {
+      NameScreen nameScreen = new NameScreen();
+      gameObjects.add(nameScreen);
+    }
   }
 
-  public void loadImages(){
+  private void loadImages(){
     helicopterImage = loadImage("images/helicopter_placeholder.png");
     tempImage = loadImage("images/placeholder_placeholder.png");
     bridgeImage = loadImage("images/bridge_placeholder.png");

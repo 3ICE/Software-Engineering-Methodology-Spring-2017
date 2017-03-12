@@ -1,10 +1,10 @@
 import java.util.concurrent.Callable;
 
-Meta meta = new Meta();
+Meta meta;
 
 void setup() {
   size(640, 480, P2D); //We have to use a renderer
-  meta.loadImages();
+  meta = new Meta();
 }
 
 void draw() {
