@@ -7,19 +7,10 @@ class Meta extends GameObject {
 
   public GameScene gameScene;
 
-  PImage helicopterImage;
-  PImage tempImage;
-  PImage bridgeImage;
-  PImage fuelImage;
-  PImage jetImage;
-  PImage tankerImage;
-
   Meta() {
     super();
     inputManager = new InputManager();
     gameObjects.add(inputManager);
-
-    loadImages();
 
     if (debugMode) {
       playerName = "DEBUG";
@@ -33,15 +24,6 @@ class Meta extends GameObject {
 
   public boolean isDebugMode() {
     return debugMode;
-  }
-
-  private void loadImages(){
-    helicopterImage = loadImage("images/helicopter_placeholder.png");
-    tempImage = loadImage("images/placeholder_placeholder.png");
-    bridgeImage = loadImage("images/bridge_placeholder.png");
-    fuelImage = loadImage("images/fuel_placeholder.png");
-    jetImage = loadImage("images/jet_placeholder.png");
-    tankerImage = loadImage("images/tanker_placeholder.png");
   }
 
   public void onNameSubmit(String name) {
