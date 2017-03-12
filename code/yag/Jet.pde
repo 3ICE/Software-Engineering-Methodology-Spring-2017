@@ -35,7 +35,7 @@ class Jet extends Entity {
   }
 
   void update(Meta meta) {
-    if (collidesWith(meta, "enemy"))
+    if (collidesWith(meta, "enemy") || collidesWith(meta, "collider"))
     {
       crash();
       return;
