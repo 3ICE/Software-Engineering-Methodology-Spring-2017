@@ -1,4 +1,5 @@
 class Enemy extends Sprite {
+  int scoreValue = 1;
   Enemy(float speed, PVector position, PImage img) {
     super("enemy", position, img);
     velocity.x = speed;
@@ -9,10 +10,11 @@ class Enemy extends Sprite {
 
     if (collidesWith(meta, "bullet"))
     {
-      println("Boom!");
+      //println("Boom!");
       position.x = 9999;
       position.y = 9999;
       velocity.y = 0;
+      meta.score += scoreValue;
       meta.gameObjects.remove(this);
     }
 

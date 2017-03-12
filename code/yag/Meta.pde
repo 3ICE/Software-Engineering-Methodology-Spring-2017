@@ -4,6 +4,7 @@ class Meta extends GameObject {
   InputManager inputManager;
   private String playerName;
   private boolean debugMode = true;
+  int score = 0;
 
   public GameScene gameScene;
 

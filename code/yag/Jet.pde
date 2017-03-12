@@ -79,7 +79,7 @@ class Jet extends Entity {
     if (delta > firingSpeedCooldown && meta.inputManager.getState(KeyEvent.VK_SPACE)) {
       Shoot();
     }
-    lastTime = millis();     
+    lastTime = millis();
     super.afterUpdate(meta);
   }
 
@@ -97,7 +97,7 @@ class Jet extends Entity {
   // shoot a bullet
   void Shoot()
   {
-    println("Pew");
+    //println("Pew");
     //for(GameObject go : meta.gameObjects){println(go);} //for(Bullet b : meta.bullets){println(b);}
     delta = 0; //3ICE: Reset cooldown
     //3ICE: This ConcurrentModificationException throw is rather annoying. Can we use ConcurrentArrayList? Then I wouldn't need a separate bullets array.
