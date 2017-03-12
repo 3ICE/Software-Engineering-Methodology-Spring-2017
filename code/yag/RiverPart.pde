@@ -5,9 +5,12 @@ class RiverPart extends GameObject {
   float pheight;
   ArrayList<RiverCollider> colliders;
   ArrayList<Entity> entities;
-
+  
+  PImage img;
+  
   RiverPart(RiverPartInfo info, float y, float pwidth, float pheight) {
     super();
+    img = loadImage("images/riverbank_1.png");
 
     this.y = y;
 
@@ -55,5 +58,15 @@ class RiverPart extends GameObject {
       entity.velocity.y = speed;
     }
     super.update(meta);
+  }
+  
+  void draw(Meta meta)
+  {
+    super.draw(meta); //<>//
+    image(img, 0, y);
+    pushMatrix();
+    scale(-1.0, 1.0);
+    image(img,-width, y);
+    popMatrix();
   }
 }
