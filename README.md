@@ -16,3 +16,7 @@ Assigned teacher: Farshad Ahmadi
 * Mengyang Chen, <mengyang.chen@student.tut.fi>
 * Daniel Berezvai, <daniel.berezvai@student.tut.fi>
 * Alexandre Kirszenberg, <alexandre.kirszenberg@student.tut.fi>
+
+# References
+
+Collision code adapted from https://github.com/jeffThompson/CollisionDetection.
