@@ -9,9 +9,9 @@ class GameScene extends GameObject {
     River river = new River();
     jet = new Jet();
     fuelText = new FuelText(jet);
-    gameObjects.add(fuelText);
     gameObjects.add(river);
     gameObjects.add(jet);
+    gameObjects.add(fuelText);
   }
 
   void update(Meta meta) {
