@@ -1,19 +1,15 @@
-class FuelText extends RiverObject
+class FuelText extends GameObject
 {
   PFont f;
   Jet j1;
+  PVector position;
+
   // constructor
   FuelText(Jet j)
   {
     f = createFont("Arial", 16);
     j1 = j;
-    velocity = new PVector(0,0);
-    location = new PVector(width-50,20);
-  }
-  
-  //
-  void update(Meta meta) {
-    super.update(meta);
+    position = new PVector(width-50, 20);
   }
 
   // show the jet in the background
@@ -29,7 +25,6 @@ class FuelText extends RiverObject
       fill(0);
     }
     textAlign(RIGHT);
-    text("Fuel:"+j1.fuel, location.x, location.y);
+    text("Fuel:"+j1.fuel, position.x, position.y);
   }
-  
 }

@@ -3,8 +3,6 @@ import java.awt.event.KeyEvent;
 class NameScreen extends GameObject {
   private String name = "";
 
-  NameScreen() {}
-
   void update(Meta meta) {
     super.update(meta);
 
@@ -26,7 +24,7 @@ class NameScreen extends GameObject {
 
   void draw(Meta meta) {
     super.draw(meta);
-    
+
     textSize(16);
     fill(0);
     textAlign(CENTER);

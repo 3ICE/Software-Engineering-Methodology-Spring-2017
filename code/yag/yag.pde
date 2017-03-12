@@ -13,6 +13,9 @@ void draw() {
   meta.update(meta);
   meta.afterUpdate(meta);
   meta.draw(meta);
+  if (meta.isDebugMode()) {
+    meta.debugDraw(meta);
+  }
 }
 
 void keyPressed() {

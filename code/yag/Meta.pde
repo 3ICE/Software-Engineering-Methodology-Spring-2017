@@ -5,6 +5,8 @@ class Meta extends GameObject {
   private String playerName;
   private boolean debugMode = true;
 
+  public GameScene gameScene;
+
   PImage helicopterImage;
   PImage tempImage;
   PImage bridgeImage;
@@ -21,12 +23,16 @@ class Meta extends GameObject {
 
     if (debugMode) {
       playerName = "DEBUG";
-      GameScene gameScene = new GameScene(this);
+      gameScene = new GameScene(this);
       gameObjects.add(gameScene);
     } else {
       NameScreen nameScreen = new NameScreen();
       gameObjects.add(nameScreen);
     }
+  }
+
+  public boolean isDebugMode() {
+    return debugMode;
   }
 
   private void loadImages(){
