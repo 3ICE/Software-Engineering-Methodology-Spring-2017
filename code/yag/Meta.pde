@@ -2,6 +2,7 @@ import java.util.HashSet;
 
 class Meta extends GameObject {
   InputManager inputManager;
+  ScoreHandler scoreHandler;
   private String playerName;
   private boolean debugMode = true;
   int score = 0;
@@ -11,6 +12,8 @@ class Meta extends GameObject {
   Meta() {
     super();
     inputManager = new InputManager();
+    scoreHandler = new ScoreHandler();
+    scoreHandler.loadScores("scores.csv");
     gameObjects.add(inputManager);
 
     if (debugMode) {
