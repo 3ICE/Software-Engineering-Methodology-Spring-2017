@@ -1,10 +1,16 @@
+import java.util.*;
+
 class ScoreHandler{
- class Score{
+ class Score implements Comparable<Score>{
   String name;
   int score;
+  
+  public int compareTo(Score o){
+    return o.score - score;
+  }
  }
   
-  ArrayList<Score> scores = new ArrayList<Score>();
+ArrayList<Score> scores = new ArrayList<Score>();
   
  ScoreHandler(){
    
@@ -37,10 +43,22 @@ class ScoreHandler{
         score.name = list[0];
         score.score = int(list[1]);
         scores.add(score);
-     } 
+     }
+     Collections.sort(scores);
    }
    catch(Exception e){
      println("There was a problem loading the scores.");
    }
+ }
+ 
+ String getScoreString(){
+   
+   String lines = "";
+   int c = 0;
+   for(Score score : scores){
+      lines += Integer.toString(score.score) + ", " + score.name + "\n";
+      c++;
+   }
+   return lines;
  }
 }
