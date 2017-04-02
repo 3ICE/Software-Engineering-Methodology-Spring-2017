@@ -9,9 +9,9 @@ class ScoreText extends GameObject
     position = new PVector(50, 20);
   }
 
-  void draw(Meta meta)
+  void draw()
   {
-    super.draw(meta);
+    super.draw();
     textFont(f);
     fill(0);
     textAlign(LEFT);

@@ -1,9 +1,10 @@
-import java.util.concurrent.CopyOnWriteArrayList;
-
 class GameObject
 {
   String collisionType;
-  CopyOnWriteArrayList<GameObject> gameObjects; //3ICE: Requesting CopyOnWriteArrayList for Concurrent modifications 
+  GameObject parent;
+  Meta meta;
+  ArrayList<GameObject> gameObjects;
+  boolean removeScheduled = false;
 
   GameObject() {
     this("object");
@@ -11,7 +12,7 @@ class GameObject
 
   GameObject(String collisionType) {
     this.collisionType = collisionType;
-    gameObjects = new CopyOnWriteArrayList<GameObject>();
+    gameObjects = new ArrayList<GameObject>();
   }
 
   public ArrayList<GameObject> getAllChildren() {
@@ -26,7 +27,7 @@ class GameObject
     return new PVector[0];
   }
 
-  public boolean collidesWith(Meta meta, String otherType) {
+  public boolean collidesWith(String otherType) {
     PVector[] collisionMask = getCollisionMask();
     for (GameObject other : meta.getAllChildren()) {
       if (other.collisionType == otherType) {
@@ -39,27 +40,36 @@ class GameObject
     return false;
   }
 
-  public void update(Meta meta) {
+  public void update() {
     for (GameObject gameObject : gameObjects) {
-      gameObject.update(meta);
+      gameObject.update();
     }
   }
 
-  public void afterUpdate(Meta meta) {
+  public void afterUpdate() {
+    ArrayList<GameObject> toRemove = new ArrayList<GameObject>();
     for (GameObject gameObject : gameObjects) {
-      gameObject.afterUpdate(meta);
+      gameObject.afterUpdate();
+    }
+    for (GameObject gameObject : gameObjects) {
+      if (gameObject.removeScheduled) {
+        toRemove.add(gameObject);
+      }
+    }
+    for (GameObject gameObject : toRemove) {
+      removeChild(gameObject);
     }
   }
 
-  public void draw(Meta meta) {
+  public void draw() {
     for (GameObject gameObject : gameObjects) {
-      gameObject.draw(meta);
+      gameObject.draw();
     }
   }
 
-  public void debugDraw(Meta meta) {
+  public void debugDraw() {
     for (GameObject gameObject : gameObjects) {
-      gameObject.debugDraw(meta);
+      gameObject.debugDraw();
     }
 
     PShape shape = createShape();
@@ -72,5 +82,31 @@ class GameObject
     }
     shape.endShape(CLOSE);
     shape(shape);
+  }
+
+  void _onAdd(Meta meta, GameObject parent) {
+    this.parent = parent;
+    this.meta = meta;
+  }
+
+  void onAdd() {
+  }
+
+  void onRemove() {
+  }
+
+  void addChild(GameObject child) {
+    child._onAdd(meta, this);
+    child.onAdd();
+    gameObjects.add(child);
+  }
+
+  void removeChild(GameObject child) {
+    child.onRemove();
+    gameObjects.remove(child);
+  }
+
+  void removeSelf() {
+    removeScheduled = true;
   }
 }

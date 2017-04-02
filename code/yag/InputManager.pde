@@ -47,9 +47,9 @@ class InputManager extends GameObject {
     state.remove(new Integer(keyCode));
   }
 
-  public void afterUpdate(Meta meta) {
-    super.afterUpdate(meta);
-    
+  public void afterUpdate() {
+    super.afterUpdate();
+
     // Clears the last frame buffer.
     pressed.clear();
     chars.clear();

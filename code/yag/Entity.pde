@@ -18,9 +18,9 @@ class Entity extends GameObject
     acceleration = new PVector(0, 0);
   }
 
-  void update(Meta meta)
+  void update()
   {
-    super.update(meta);
+    super.update();
     velocity.add(acceleration);
     position.add(velocity);
   }

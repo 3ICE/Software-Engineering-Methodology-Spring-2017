@@ -1,3 +1,9 @@
+class StoryFinishedEvent extends Event {
+  StoryFinishedEvent() {
+    super("storyFinished");
+  }
+}
+
 /* This class is used to display the story in the beginning of the game. */
 class StoryDisplay extends GameObject {
 
@@ -28,7 +34,8 @@ class StoryDisplay extends GameObject {
     storyLine[0] = "In a small town next to a big river, lived, " + personalizedStoryName + ".";
   }
 
-  public void update(Meta meta){
+  public void update(){
+    super.update();
     // First draw
     if(startTime == 0){
       startTime = millis();
@@ -38,11 +45,11 @@ class StoryDisplay extends GameObject {
 
     currentLine = (currentTime - startTime) / frameDuration;
     if(currentLine >= storyLength){
-      meta.onStoryFinished();
+      meta.eventManager.dispatchEvent(new StoryFinishedEvent());
     }
   }
 
-  void draw(Meta meta){
+  void draw(){
     textSize(16);
     fill(0);
     textAlign(CENTER);

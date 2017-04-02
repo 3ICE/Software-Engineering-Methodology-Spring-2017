@@ -5,21 +5,21 @@ class Enemy extends Sprite {
     velocity.x = speed;
   }
 
-  public void update(Meta meta) {
-    super.update(meta);
+  public void update() {
+    super.update();
 
-    if (collidesWith(meta, "bullet"))
+    if (collidesWith("bullet"))
     {
-      //println("Boom!");
-      position.x = 9999;
-      position.y = 9999;
-      velocity.y = 0;
       meta.score += scoreValue;
-      meta.gameObjects.remove(this);
+      onDestroy();
+      removeSelf();
     }
 
-    if (collidesWith(meta, "collider")) {
+    if (collidesWith("collider")) {
       velocity.x = -velocity.x;
     }
+  }
+
+  public void onDestroy() {
   }
 }

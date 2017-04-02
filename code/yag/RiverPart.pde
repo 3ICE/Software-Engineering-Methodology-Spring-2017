@@ -5,9 +5,9 @@ class RiverPart extends GameObject {
   float pheight;
   ArrayList<RiverCollider> colliders;
   ArrayList<Entity> entities;
-  
+
   PImage img;
-  
+
   RiverPart(RiverPartInfo info, float y, float pwidth, float pheight) {
     super();
     img = loadImage("images/riverbank_1.png");
@@ -19,7 +19,6 @@ class RiverPart extends GameObject {
 
     for (PVector[] shape : info.shapes) {
       RiverCollider collider = new RiverCollider(shape, y, pwidth, pheight);
-      gameObjects.add(collider);
       colliders.add(collider);
       entities.add(collider);
     }
@@ -42,27 +41,35 @@ class RiverPart extends GameObject {
         case "bridge":
           entity = new Bridge(position);
           break;
+        case "jet":
+          entity = new EnemyJet(position);
+          break;
         default:
           entity = new Entity(position);
           break;
       }
       entities.add(entity);
-      gameObjects.add(entity);
     }
   }
 
-  void update(Meta meta) {
+  void onAdd() {
+    for (Entity entity : entities) {
+      addChild(entity);
+    }
+  }
+
+  void update() {
     float speed = 1;
     y += speed;
     for (Entity entity : entities) {
       entity.velocity.y = speed;
     }
-    super.update(meta);
+    super.update();
   }
-  
-  void draw(Meta meta)
+
+  void draw()
   {
-    super.draw(meta); //<>//
+    super.draw(); //<>//
     image(img, 0, y);
     pushMatrix();
     scale(-1.0, 1.0);

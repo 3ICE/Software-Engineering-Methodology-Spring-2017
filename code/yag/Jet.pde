@@ -1,3 +1,9 @@
+class JetDestroyedEvent extends Event {
+  JetDestroyedEvent() {
+    super("jetDestroyed");
+  }
+}
+
 class Jet extends Entity {
   String collisionType = "jet";
   PShape s;
@@ -37,8 +43,8 @@ class Jet extends Entity {
     return collisionMask;
   }
 
-  void update(Meta meta) {
-    if (collidesWith(meta, "enemy") || collidesWith(meta, "collider"))
+  void update() {
+    if (collidesWith("enemy") || collidesWith("collider"))
     {
       crash();
       return;
@@ -60,7 +66,7 @@ class Jet extends Entity {
       velocity.x = 0;
     }
 
-    if (collidesWith(meta, "fuel"))
+    if (collidesWith("fuel"))
     {
       fuel += 3;
     }
@@ -70,23 +76,21 @@ class Jet extends Entity {
       return;
     }
 
-    super.update(meta);
-  }
-  void afterUpdate(Meta meta) {
     //println("b"+delta);
     delta += millis() - lastTime;
     //println("a"+delta);
     if (delta > firingSpeedCooldown && meta.inputManager.getState(KeyEvent.VK_SPACE)) {
-      Shoot();
+      shoot();
     }
     lastTime = millis();
-    super.afterUpdate(meta);
+
+    super.update();
   }
 
   // show the jet in the background
-  void draw(Meta meta)
+  void draw()
   {
-    super.draw(meta);
+    super.draw();
 
     pushMatrix();
     translate(position.x, position.y);
@@ -95,21 +99,17 @@ class Jet extends Entity {
   }
 
   // shoot a bullet
-  void Shoot()
+  void shoot()
   {
     //println("Pew");
     //for(GameObject go : meta.gameObjects){println(go);} //for(Bullet b : meta.bullets){println(b);}
     delta = 0; //3ICE: Reset cooldown
-    //3ICE: This ConcurrentModificationException throw is rather annoying. Can we use ConcurrentArrayList? Then I wouldn't need a separate bullets array.
-    meta.gameObjects.add(new Bullet(new PVector(position.x, position.y-20), velocity));
+    addChild(new Bullet(new PVector(position.x, position.y-20), velocity));
   }
-
 
   // destroyed by enemies
   void crash()
   {
-    // reset position of the Jet, later should be updated to destory
-    fuel = 2000;
-    position = new PVector(width/2, height/2);
+    meta.eventManager.dispatchEvent(new JetDestroyedEvent());
   }
 }

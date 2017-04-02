@@ -12,6 +12,10 @@ class RiverLoader {
     for (int i = 0; i < layers.size(); i++) {
       JSONObject layer = layers.getJSONObject(i);
 
+      JSONObject properties = layer.getJSONObject("properties");
+      int difficulty =
+        properties.hasKey("difficulty") ? properties.getInt("difficulty") :
+                                          -2;
       JSONArray objects = layer.getJSONArray("objects");
       ArrayList<PVector[]> shapes = new ArrayList<PVector[]>();
       ArrayList<RiverEntityInfo> entities = new ArrayList<RiverEntityInfo>();
@@ -19,8 +23,11 @@ class RiverLoader {
       for (int j = 0; j < objects.size(); j++) {
         JSONObject object = objects.getJSONObject(j);
 
-        if (object.hasKey("polygon")) {
-          JSONArray polygon = object.getJSONArray("polygon");
+        boolean isPolygon = object.hasKey("polygon");
+        boolean isPolyline = object.hasKey("polyline");
+        if (isPolygon || isPolyline) {
+          String polygonKey = isPolygon ? "polygon" : "polyline";
+          JSONArray polygon = object.getJSONArray(polygonKey);
           float polygonX = object.getFloat("x");
           float polygonY = object.getFloat("y");
 
@@ -47,7 +54,7 @@ class RiverLoader {
         }
       }
 
-      RiverPartInfo bank = new RiverPartInfo(shapes, entities);
+      RiverPartInfo bank = new RiverPartInfo(difficulty, shapes, entities);
       banks.add(bank);
     }
 

@@ -1,28 +1,34 @@
 import java.util.HashSet;
 
-class Meta extends GameObject {
+class Meta extends GameObject implements EventListener {
   InputManager inputManager;
   ScoreHandler scoreHandler;
+  EventManager eventManager;
   private String playerName;
   private boolean debugMode = true;
   int score = 0;
 
+  private NameScreen nameScreen;
+  private StoryDisplay storyDisplay;
   public GameScene gameScene;
 
-  Meta() {
-    super();
+  void onAdd() {
+    eventManager = new EventManager();
     inputManager = new InputManager();
     scoreHandler = new ScoreHandler();
+
     scoreHandler.loadScores("scores.csv");
-    gameObjects.add(inputManager);
+    addChild(eventManager);
+    addChild(inputManager);
 
     if (debugMode) {
       playerName = "DEBUG";
-      gameScene = new GameScene(this);
-      gameObjects.add(gameScene);
+      gameScene = new GameScene();
+      addChild(gameScene);
     } else {
-      NameScreen nameScreen = new NameScreen();
-      gameObjects.add(nameScreen);
+      nameScreen = new NameScreen();
+      addChild(nameScreen);
+      eventManager.addEventListener("nameSubmit", this);
     }
   }
 
@@ -30,17 +36,32 @@ class Meta extends GameObject {
     return debugMode;
   }
 
-  public void onNameSubmit(String name) {
-    playerName = name;
-    gameObjects.remove(1);
-    StoryDisplay storyDisplay = new StoryDisplay(playerName);
-    gameObjects.add(storyDisplay);
+  public void onEvent(Event event) {
+    switch (event.type) {
+      case "nameSubmit":
+        onNameSubmit((NameSubmitEvent)event);
+        break;
+      case "storyFinished":
+        onStoryFinished();
+        break;
+      default:
+        break;
+    }
+  }
+
+  public void onNameSubmit(NameSubmitEvent event) {
+    playerName = event.name;
+    removeChild(nameScreen);
+    storyDisplay = new StoryDisplay(playerName);
+    addChild(storyDisplay);
+    eventManager.removeEventListener("nameSubmit", this);
+    eventManager.addEventListener("storyFinished", this);
   }
 
   public void onStoryFinished() {
-    gameObjects.remove(1);
-    GameScene gameScene = new GameScene(this);
-    gameObjects.add(gameScene);
+    removeChild(storyDisplay);
+    gameScene = new GameScene();
+    addChild(gameScene);
   }
 
   // Returns the player name.

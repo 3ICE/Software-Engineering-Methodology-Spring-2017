@@ -1,33 +1,89 @@
 import java.util.Random;
 
 class River extends GameObject {
-  ArrayList<RiverPartInfo> infos;
+  HashMap<Integer, ArrayList<RiverPartInfo>> infosByDifficulty;
   Random rnd;
+  int currentDifficulty;
+  int currentStage;
+  RiverPart firstPart;
+  RiverPart secondPart;
 
-  River() {
+  River(int difficulty) {
     super();
 
     rnd = new Random();
 
     RiverLoader loader = new RiverLoader();
-    infos = loader.load("river.json");
+    ArrayList<RiverPartInfo> infos = loader.load("river.json");
+    infosByDifficulty = new HashMap<Integer, ArrayList<RiverPartInfo>>();
 
-    RiverPart firstPart = new RiverPart(infos.get(0), 0, width, height);
-    RiverPart secondPart = new RiverPart(infos.get(1 + rnd.nextInt(2)), -height, width, height);
+    for (RiverPartInfo info : infos) {
+      if (!infosByDifficulty.containsKey(info.difficulty)) {
+        infosByDifficulty.put(info.difficulty, new ArrayList<RiverPartInfo>());
+      }
+      infosByDifficulty.get(info.difficulty).add(info);
+    }
 
-    gameObjects.add(firstPart);
-    gameObjects.add(secondPart);
+    currentDifficulty = difficulty;
   }
 
-  void update(Meta meta) {
-    super.update(meta);
+  void onAdd() {
+    init();
+  }
 
-    RiverPart firstPart = (RiverPart)gameObjects.get(0);
+  void init() {
+    currentStage = 1;
+
+    RiverPartInfo firstPartInfo;
+    if (currentDifficulty == 1) {
+      firstPartInfo = getRiverPartInfoForDifficulty(0);
+    } else {
+      firstPartInfo = getRiverPartInfoForDifficulty(currentDifficulty);
+    }
+    RiverPartInfo secondPartInfo = getRiverPartInfoForDifficulty(currentDifficulty);
+
+    firstPart = new RiverPart(firstPartInfo, 0, width, height);
+    secondPart = new RiverPart(secondPartInfo, -height, width, height);
+
+    addChild(firstPart);
+    addChild(secondPart);
+  }
+
+  RiverPartInfo getRiverPartInfoForDifficulty(int difficulty) {
+    while (!infosByDifficulty.containsKey(difficulty)) {
+      difficulty--;
+    }
+    ArrayList<RiverPartInfo> infos = infosByDifficulty.get(difficulty);
+    return infos.get(rnd.nextInt(infos.size()));
+  }
+
+  void resetToDifficulty(int difficulty) {
+    currentDifficulty = difficulty;
+    removeChild(firstPart);
+    removeChild(secondPart);
+    init();
+  }
+
+  void update() {
+    super.update();
+
     if (firstPart.y > height) {
       float delta = firstPart.y - height;
-      gameObjects.remove(0);
-      RiverPart secondPart = new RiverPart(infos.get(1 + rnd.nextInt(2)), -height + delta, width, height);
-      gameObjects.add(secondPart);
+      removeChild(firstPart);
+      firstPart = secondPart;
+      currentStage++;
+
+      RiverPartInfo info;
+      if (currentStage > 10) {
+        currentStage = 0;
+        currentDifficulty++;
+        info = getRiverPartInfoForDifficulty(-1);
+      } else {
+        info = getRiverPartInfoForDifficulty(currentDifficulty);
+      }
+
+      secondPart = new RiverPart(info, -height + delta, width, height);
+      addChild(secondPart);
     }
   }
 }

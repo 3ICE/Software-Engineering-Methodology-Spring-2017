@@ -1,22 +1,20 @@
 class FuelText extends GameObject
 {
   PFont f;
-  Jet j1;
   PVector position;
 
   // constructor
-  FuelText(Jet j)
+  FuelText()
   {
     f = createFont("Arial", 16);
-    j1 = j;
     position = new PVector(width-50, 20);
   }
 
-  void draw(Meta meta)
+  void draw()
   {
-    super.draw(meta);
+    super.draw();
     textFont(f);
-    if(j1.fuel<500)
+    if(meta.gameScene.jet.fuel<500)
     {
       fill(255,0,0);
     }
@@ -24,6 +22,6 @@ class FuelText extends GameObject
       fill(0);
     }
     textAlign(RIGHT);
-    text("Fuel:"+j1.fuel, position.x, position.y);
+    text("Fuel:" + meta.gameScene.jet.fuel, position.x, position.y);
   }
 }

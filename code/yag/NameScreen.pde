@@ -1,13 +1,21 @@
 import java.awt.event.KeyEvent;
 
+class NameSubmitEvent extends Event {
+  String name;
+  NameSubmitEvent(String name) {
+    super("nameSubmit");
+    this.name = name;
+  }
+}
+
 class NameScreen extends GameObject {
   private String name = "";
 
-  void update(Meta meta) {
-    super.update(meta);
+  void update() {
+    super.update();
 
     if (meta.inputManager.getPressed(KeyEvent.VK_ENTER)) {
-      meta.onNameSubmit(name);
+      meta.eventManager.dispatchEvent(new NameSubmitEvent(name));
     } else {
       if (meta.inputManager.getPressed(KeyEvent.VK_BACK_SPACE)) {
         if (name.length() > 0) {
@@ -22,8 +30,8 @@ class NameScreen extends GameObject {
     }
   }
 
-  void draw(Meta meta) {
-    super.draw(meta);
+  void draw() {
+    super.draw();
 
     textSize(16);
     fill(0);

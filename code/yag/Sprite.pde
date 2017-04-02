@@ -20,9 +20,9 @@ class Sprite extends Entity
     return collisionMask;
   }
 
-  void draw(Meta meta)
+  void draw()
   {
-    super.draw(meta);
+    super.draw();
     image(img, position.x - size.x / 2, position.y - size.y / 2);
   }
 }
