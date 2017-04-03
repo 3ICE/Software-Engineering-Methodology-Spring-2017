@@ -1,6 +1,6 @@
-class NewLiveEvent extends Event {
-  NewLiveEvent() {
-    super("newLive");
+class NewLifeEvent extends Event {
+  NewLifeEvent() {
+    super("newLife");
   }
 }
 
@@ -8,7 +8,7 @@ class ScoreText extends GameObject
 {
   PFont f;
   PVector position;
-  int tmp=0;
+  int nextLifeAwardedAt = 10000;
 
   ScoreText()
   {
@@ -17,9 +17,9 @@ class ScoreText extends GameObject
   }
 
   void update() {
-    if (meta.score >= (tmp + 100))
+    if (meta.score >= (nextLifeAwardedAt))
     {
-      tmp += 100;
+      nextLifeAwardedAt += 10000;
       addOnelife();
     }
   }
@@ -35,6 +35,6 @@ class ScoreText extends GameObject
 
   void addOnelife()
   {
-    meta.eventManager.dispatchEvent(new NewLiveEvent());
+    meta.eventManager.dispatchEvent(new NewLifeEvent());
   }
 }

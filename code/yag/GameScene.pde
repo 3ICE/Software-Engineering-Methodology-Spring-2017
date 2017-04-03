@@ -26,13 +26,13 @@ class GameScene extends GameObject implements EventListener {
     addChild(scoreDisplay);
     meta.eventManager.addEventListener("bridgeDestroyed", this);
     meta.eventManager.addEventListener("jetDestroyed", this);
-    meta.eventManager.addEventListener("newLive", this);
+    meta.eventManager.addEventListener("newLife", this);
   }
 
   void onRemove() {
     meta.eventManager.removeEventListener("bridgeDestroyed", this);
     meta.eventManager.removeEventListener("jetDestroyed", this);
-    meta.eventManager.removeEventListener("newLive", this);
+    meta.eventManager.removeEventListener("newLife", this);
   }
 
   void onEvent(Event event) {
@@ -43,9 +43,9 @@ class GameScene extends GameObject implements EventListener {
       case "jetDestroyed":
         onJetDestroyed();
         break;
-      case "newLive":
-        println("newLive comes");
-        onNewLive();
+      case "newLife":
+        println("newLife comes");
+        onNewLife();
         break;
       case "outOfLives":
         meta.scoreHandler.addScore(meta.playerName, meta.score);
@@ -59,7 +59,7 @@ class GameScene extends GameObject implements EventListener {
     difficulty += 1;
   }
 
-  void onNewLive()
+  void onNewLife()
   {
     lives+=1;
   }
