@@ -1,7 +1,7 @@
 # TIE-21106 Software Engineering Methodology, Spring 2017
 Created 2017. 01. 22. by Tensu.
 
-This is just a text file, as such is needed at TUT GitLab Repolainen.
+This is just a text file, as such is needed at [TUT GitLab Repolainen](https://gitlab.rd.tut.fi/repolainen/courses/100/exercises/).
 
 Have fun with your Project Assignment game; River Raid.
 
