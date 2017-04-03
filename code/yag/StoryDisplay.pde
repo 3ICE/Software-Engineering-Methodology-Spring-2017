@@ -43,9 +43,11 @@ class StoryDisplay extends GameObject {
 
     int currentTime = millis();
 
-    currentLine = (currentTime - startTime) / frameDuration;
-    if(currentLine >= storyLength){
+    int nextLine = (currentTime - startTime) / frameDuration;
+    if(nextLine >= storyLength || meta.inputManager.getPressed(KeyEvent.VK_SPACE)){
       meta.eventManager.dispatchEvent(new StoryFinishedEvent());
+    } else {
+      currentLine = nextLine;
     }
   }
 

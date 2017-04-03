@@ -37,18 +37,19 @@ class EventManager extends GameObject {
     eventsBuffer.add(event);
   }
 
-  void update() {
+  void flush() {
     for (Event event : eventsBuffer) {
       if (!eventListeners.containsKey(event.type)) {
         continue;
       }
 
-      ArrayList<EventListener> listeners = eventListeners.get(event.type);
+      // Copy to avoid ConcurrentModificationException when an event listener
+      // adds new listeners.
+      ArrayList<EventListener> listeners = new ArrayList<EventListener>(eventListeners.get(event.type));
       for (EventListener listener : listeners) {
         listener.onEvent(event);
       }
     }
     eventsBuffer.clear();
-    super.update();
   }
 }

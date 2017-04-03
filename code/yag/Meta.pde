@@ -5,7 +5,7 @@ class Meta extends GameObject implements EventListener {
   ScoreHandler scoreHandler;
   EventManager eventManager;
   private String playerName;
-  private boolean debugMode = true;
+  private boolean debugMode = false;
   int score = 0;
 
   private NameScreen nameScreen;
@@ -18,7 +18,6 @@ class Meta extends GameObject implements EventListener {
     scoreHandler = new ScoreHandler();
 
     scoreHandler.loadScores("scores.csv");
-    addChild(eventManager);
     addChild(inputManager);
 
     if (debugMode) {
@@ -67,5 +66,15 @@ class Meta extends GameObject implements EventListener {
   // Returns the player name.
   public String getPlayerName() {
     return playerName;
+  }
+
+  void update() {
+    eventManager.flush();
+
+    if (inputManager.getPressed(KeyEvent.VK_D)) {
+      debugMode = !debugMode;
+    }
+
+    super.update();
   }
 }
