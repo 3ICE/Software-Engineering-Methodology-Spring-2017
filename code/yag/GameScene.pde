@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 class GameScene extends GameObject implements EventListener {
   Jet jet;
   FuelText fuelText;
-  LiveText liveText;
+  LifeText lifeText;
   ScoreText scoreText;
   ScoreDisplay scoreDisplay;
   River river;
@@ -15,13 +15,13 @@ class GameScene extends GameObject implements EventListener {
     river = new River(difficulty);
     jet = new Jet();
     fuelText = new FuelText();
-    liveText = new LiveText();
+    lifeText = new LifeText();
     scoreText = new ScoreText();
     scoreDisplay = new ScoreDisplay(meta.scoreHandler);
     addChild(river);
     addChild(jet);
     addChild(fuelText);
-    addChild(liveText);
+    addChild(lifeText);
     addChild(scoreText);
     addChild(scoreDisplay);
     meta.eventManager.addEventListener("bridgeDestroyed", this);

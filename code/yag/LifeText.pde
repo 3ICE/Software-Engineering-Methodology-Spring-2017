@@ -1,10 +1,10 @@
-class LiveText extends GameObject
+class LifeText extends GameObject
 {
   PFont f;
   PVector position;
 
   // constructor
-  LiveText()
+  LifeText()
   {
     f = createFont("Arial", 16);
     position = new PVector(width-50, 40);
