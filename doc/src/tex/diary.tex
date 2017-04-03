@@ -12,19 +12,19 @@ This chapter holds our journal of lessons learned during the course. Detailed an
 
 \paragraph{} As to not fall into despair from lack of work, we selected additional tasks to complete. In the end, we have four additional user stories more or less in a completed state, in addition to the first two proposed solutions that were refactored several times until they met everyone's ever higher standards for good code.
 
-\subsubsection{We had difficulties — communication and missed deadline}
+\subsubsection{We had difficulties}
 
-\paragraph{} Working in a team can be difficult, especially when it comes to communicating between team members. None of us were very familiar with Agilefant, so we did most of the communication on WhatsApp and in person.
+\paragraph{Communication} Working in a team can be difficult, especially when it comes to communicating between team members. None of us were very familiar with Agilefant, so we did most of the communication on WhatsApp and in person.
 
-\paragraph{} One failure was that we missed the delivery deadline. All our tasks were complete weeks ago, but we never submitted them to Repolainen because we constantly kept adding new things. In the future, we will create calendar entries for each deadline with automatic email notifications set up to give us a reminder two days in advance.
+\paragraph{Missed deadline} One failure was that we missed the delivery deadline. All our tasks were complete weeks ago, but we never submitted them to Repolainen because we constantly kept adding new things. In the future, we will create calendar entries for each deadline with automatic email notifications set up to give us a reminder two days in advance.
 
 \subsubsection{What were the main learnings}
 
 \paragraph{} We should use Agilefant more often, in order to make sure that we’re all on the same page. It also helps in defining clear objectives for individuals and for the team as a whole.
 
-\subsubsection{For the next sprint, we decided to change our work habits and one tool}
+\subsubsection{For the next sprint, we decided to change...}
 
-\paragraph{} We decided to try and take more advantage of the tools at our disposal. Since our team works mostly in quick and very productive iterations, it might be interesting for us to synchronize our efforts in real-life sprints.
+\paragraph{our work habits and one tool} We decided to try and take more advantage of the tools at our disposal. Since our team works mostly in quick and very productive iterations, it might be interesting for us to synchronize our efforts in real-life sprints.
 
 \paragraph{} As we have had difficulties taming Microsoft Office, a proposed move to TeX was initiated. It will improve our work process greatly. No more crashes due to faulty edit conflict resolution, nor unnecessary struggling with the laggy online version of Word that performs especially poorly on MacBooks.
 
@@ -59,6 +59,11 @@ This chapter holds our journal of lessons learned during the course. Detailed an
 
 \paragraph{} This sprint focused on further refining the game, implementing almost all of the remaining user stories. Extra thought was put into our git workflow and the definition of done.
 
+\paragraph{Git workflow} We are using a centralized workflow. This means we only have one master branch, which developers clone and commit to it. Centralized workflow is simple for the developers as long as conflicts are avoided. Since this is a small project and everyone is usually working at different times and different features, these problems rarely occur. Additionally, new features are simple enough that there is no need to commit non-working code and thus branches are generally not needed. Releases are marked with tags for Repolainen returns. Of course, some problems are possible: If two people try pushing at once, conflict happens. Also; always pull first, and then push. Resolve conflicts, if any. (Edit conflicts will arise if working on the same feature.)
+
+\paragraph{Definition of Done} Although definition of done is not static, we have produced a list of features which indicate a user story is "Done". First of all, the code is completed, as in, all of the features which were to be done are produced in code. The code is pushed into the version control system and tested generally with the already existing features. The code is documented if necessary for the rest of the team to utilize it. Naturally, this means the code builds without errors and works as depicted from the story. The whole team approves of the addition, and the task hours are up to date and the estimated time left is set to zero in Agilefant.
+
+
 \subsubsection{General feelings}
 
 \paragraph{} A lot of time was spent discussing the features and the workflow. This pushed the actual implementation of the features quite late, but with teamwork everything is possible, and we managed to get them done just like we wanted in this sprint.
@@ -67,20 +72,38 @@ This chapter holds our journal of lessons learned during the course. Detailed an
 
 \paragraph{} We learned to use Agilefant even better than before, and to define our workflow and the "Done". Our skills in Processing improved further as we implemented new features to our game.
 
+\paragraph{Meta-learning} The learnings on sprints have largely been retrospective based on the things that went well and the things that did not go so well. The learnings have been discussed in the group to find the biggest problems in each sprint and how to improve the work in the future. We have so far managed to greatly improve our agilefant performance based on the feedback we have received in each sprint as well as having a better grasp on the project in general.
+
 \subsubsection{For the next sprint...}
 
-\paragraph{} For the next sprint, we should again pay attention to distributing the work involving the decisions in the game and development process and the actual development more evenly with each other, and not one part first, second part later -style.
+\paragraph{} For the next sprint, we should again pay attention to distributing the work involving the decisions in the game and development process and the actual development more evenly with each other, and not one part first, second part later -style. We are continually improving our Agilefant workflow.
 
-\subsubsection{Meta-learning}
+\subsubsection{Burndown graphs comparison}
 
-\paragraph{} The learnings on sprints have largely been retrospective based on the things that went well and the things that did not go so well. The learnings have been discussed in the group to find the biggest problems in each sprint and how to improve the work in the future. We have so far managed to greatly improve our agilefant performance based on the feedback we have received in each sprint as well as having a better grasp on the project in general.
+\paragraph{} After learning how to log our spent effort properly in sprint 3, our graphs became less jagged. Yes, Agilefant does not decrease remaining effort automatically. We have to do it by hand. And the moment we mark a task as done, all "effort left" on it is lost — reset to zero. Something to keep in mind for Sprint 4. \textit{Log effort first, mark as done second.} But I digress; the following images depict how we enhanced our reporting technique:
 
+\begin{figure}[H]
+\centering
+\caption{At first, we were quite ''blocky''.} % 3ICE: Caption moved above figure (to help with pagination)
+\includegraphics[width=\textwidth]{sprint1}
+\end{figure}
 
-\subsection{Sprint 3: Git workflow}
+And we were finished with everything before the sprint even officially began.
 
-\paragraph{} We are using a centralized workflow. This means we only have one master branch, which developers clone and commit to it. Centralized workflow is simple for the developers as long as conflicts are avoided. Since this is a small project and everyone is usually working at different times and different features, these problems rarely occur. Additionally, new features are simple enough that there is no need to commit non-working code and thus branches are generally not needed. Releases are marked with tags for Repolainen returns. Of course, some problems are possible: If two people try pushing at once, conflict happens. Also; always pull first, and then push. Resolve conflicts, if any. (Edit conflicts will arise if working on the same feature.)
+\begin{figure}[H]
+\centering
+\caption{Then we fine-grained the effort spent portion of the graph (blue).}
+\includegraphics[width=\textwidth]{sprint2}
+\end{figure}
 
-\subsection{Sprint 3: Definition of Done}
+\begin{figure}[H]
+\centering
+\caption{Finally, even the effort left portion is starting to look more detailed (green).}
+\includegraphics[width=\textwidth]{sprint3} % 3ICE: Update this picture before the deadline. Mark everything done to avoid showing only as 9.9% finished when in fact we're 100% done.
+\end{figure}
 
-\paragraph{} Although definition of done is not static, we have produced a list of features which indicate a user story is "Done". First of all, the code is completed, as in, all of the features which were to be done are produced in code. The code is pushed into the version control system and tested generally with the already existing features. The code is documented if necessary for the rest of the team to utilize it. Naturally, this means the code builds without errors and works as depicted from the story. The whole team approves of the addition, and the task hours are up to date and the estimated time left is set to zero in Agilefant.
-
+\begin{figure}[H]
+\centering
+\caption{And here is an overview of the entire project. Significant improvement in Sprint 3 as we assign points to tasks more accurately.}
+\includegraphics[width=\textwidth]{overview}
+\end{figure}
