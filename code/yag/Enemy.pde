@@ -1,5 +1,5 @@
 class Enemy extends Sprite implements EventListener {
-  int scoreValue = 1;
+  int scoreValue = 30;
   Enemy(float speed, PVector position, PImage img) {
     super("enemy", position, img);
     velocity.x = speed;
