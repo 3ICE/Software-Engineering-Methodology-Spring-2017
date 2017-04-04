@@ -6,6 +6,7 @@ class GameScene extends GameObject implements EventListener {
   LifeText lifeText;
   ScoreText scoreText;
   ScoreDisplay scoreDisplay;
+  GameOverText gameOverText;
   River river;
   int difficulty = 1;
 
@@ -17,6 +18,7 @@ class GameScene extends GameObject implements EventListener {
     fuelText = new FuelText();
     lifeText = new LifeText();
     scoreText = new ScoreText();
+    gameOverText= new GameOverText();
     scoreDisplay = new ScoreDisplay(meta.scoreHandler);
     addChild(river);
     addChild(jet);
@@ -44,7 +46,6 @@ class GameScene extends GameObject implements EventListener {
         onJetDestroyed();
         break;
       case "newLife":
-        println("newLife comes");
         onNewLife();
         break;
       case "outOfLives":
@@ -67,17 +68,22 @@ class GameScene extends GameObject implements EventListener {
   void onJetDestroyed() {
     lives--;
     if(lives == 0){ // More temp, apologies for spaghetti
-      lives = 3;
-      meta.scoreHandler.addScore(meta.playerName, meta.score);
-      meta.scoreHandler.saveScores("scores.csv");
-      meta.score = 0;
-      difficulty = 1;
+      addChild(gameOverText);
+      removeChild(jet);
+      //removeChild(gameOverText);
+      //lives = 3;
+      //meta.scoreHandler.addScore(meta.playerName, meta.score);
+      //meta.scoreHandler.saveScores("scores.csv");
+      //meta.score = 0;
+      //difficulty = 1;
     }
-    river.resetToDifficulty(difficulty);
-    removeChild(jet);
-    jet = new Jet();
-    addChild(jet);
-
-
+    else
+    {
+      river.resetToDifficulty(difficulty);
+      removeChild(jet);
+      jet = new Jet();
+      addChild(jet);
+    }
   }
+
 }
