@@ -14,6 +14,7 @@ class LifeText extends GameObject
   {
     super.draw();
     textFont(f);
+    fill(0);
     textAlign(RIGHT);
     text("Lives:" + meta.gameScene.lives, position.x, position.y);
   }

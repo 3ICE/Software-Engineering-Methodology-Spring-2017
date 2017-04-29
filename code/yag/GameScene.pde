@@ -9,6 +9,7 @@ class OutOfLivesEvent extends Event {
 class GameScene extends GameObject implements EventListener {
   Jet jet;
   FuelText fuelText;
+  HealthBar healthBar;
   LifeText lifeText;
   ScoreText scoreText;
   ScoreDisplay scoreDisplay;
@@ -22,6 +23,7 @@ class GameScene extends GameObject implements EventListener {
     river = new River(difficulty);
     jet = new Jet();
     fuelText = new FuelText();
+    healthBar = new HealthBar();
     lifeText = new LifeText();
     scoreText = new ScoreText();
     gameOverText= new GameOverText();
@@ -29,6 +31,7 @@ class GameScene extends GameObject implements EventListener {
     addChild(river);
     addChild(jet);
     addChild(fuelText);
+    addChild(healthBar);
     addChild(lifeText);
     addChild(scoreText);
     addChild(scoreDisplay);

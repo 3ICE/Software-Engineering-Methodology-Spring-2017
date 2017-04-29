@@ -13,7 +13,8 @@ class Jet extends Entity {
   float firingSpeedCooldown=180;
   int lastTime = 0;
   int delta = 0;
-  int lives; // the number of times you can die
+  // int lives;  the number of times you can die
+  int hp; // the HP of the jet
 
   // constructor
   Jet() {
@@ -23,7 +24,8 @@ class Jet extends Entity {
     // create the shape of the Jet
     radius = 29;
     fuel = 2000;
-    lives = 3;
+    // slives = 3;
+    hp = 100;
     s = createShape();
     s.beginShape();
     s.fill(102);
