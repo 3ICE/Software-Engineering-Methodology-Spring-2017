@@ -15,7 +15,7 @@ class Jet extends Entity {
   int delta = 0;
   // int lives;  the number of times you can die
   int hp; // the HP of the jet
-
+  ParticleSystem shootParticles;
   // constructor
   Jet() {
     super("jet", new PVector(width / 2, height));
@@ -36,6 +36,7 @@ class Jet extends Entity {
     s.vertex(0, 25);
     s.vertex(-radius, 40);
     s.endShape(CLOSE);
+    shootParticles = new ParticleSystem(new PVector(width/2, 50));
   }
 
   public PVector[] getCollisionMask()
@@ -85,6 +86,7 @@ class Jet extends Entity {
     //println("a"+delta);
     if (delta > firingSpeedCooldown && meta.inputManager.getState(KeyEvent.VK_SPACE)) {
       shoot();
+      shootParticles.addParticle(new PVector(position.x, position.y-20));
     }
     lastTime = millis();
 
@@ -95,11 +97,12 @@ class Jet extends Entity {
   void draw()
   {
     super.draw();
-
+    
     pushMatrix();
     translate(position.x, position.y);
     shape(s);
     popMatrix();
+    shootParticles.run();
   }
 
   // shoot a bullet
