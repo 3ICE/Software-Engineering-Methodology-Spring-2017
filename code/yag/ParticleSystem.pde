@@ -5,6 +5,7 @@
 class ParticleSystem {
   ArrayList<Particle> particles;
   PVector origin;
+  float size = 4;
 
   ParticleSystem(PVector position) {
     origin = position.copy();
@@ -12,7 +13,7 @@ class ParticleSystem {
   }
 
   void addParticle(PVector location) {
-    particles.add(new Particle(location));
+    particles.add(new Particle(location, size));
   }
 
   void run() {
@@ -35,11 +36,12 @@ class Particle {
   PVector acceleration;
   float lifespan;
   float size = 4;
-  Particle(PVector l) {
+  Particle(PVector l, float s) {
     acceleration = new PVector(0, 0.05);
     velocity = new PVector(random(-1, 1), random(-2, 0));
     position = l.copy();
     lifespan = 255.0;
+    size = s;
   }
 
   void run() {

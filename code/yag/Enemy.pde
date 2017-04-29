@@ -40,6 +40,10 @@ class Enemy extends Sprite implements EventListener {
   }
 
   public void onDestroy() {
+    // Access jet, bad, bad me.
+    meta.gameScene.jet.addParticles(position);
+    
+    
     //3ICE: How about spawning some fireworks / explosion? :)
     //3ICE: And something like: floatingFext("+ " + scoreValue)
   }
