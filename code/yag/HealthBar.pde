@@ -8,11 +8,12 @@ class HealthBar extends GameObject
     position = new PVector(width/2-50, height-20);
   }
 
-  // this update is for debugging, should be removed later
+  //3ICE: this is for debugging, hp should be tracked for real
+  //(todo: remove 1 life, respawn player jet, etc.)
   void update() {
-    if(meta.gameScene.jet.hp>=50)
+    if(meta.gameScene.jet.hp<=0)
     {
-        meta.gameScene.jet.hp--;
+        meta.gameScene.jet.hp=100;
     }
   }
   

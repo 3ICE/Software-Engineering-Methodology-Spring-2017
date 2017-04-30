@@ -52,12 +52,16 @@ class Jet extends Entity {
   }
 
   void update() {
-    if (collidesWith("enemy") || collidesWith("collider"))
+    //3ICE: Removed collidesWith("enemy")||, see comment "ramming" in Enemy.pde
+    if (collidesWith("collider"))
     {
       crash();
       return;
     }
-
+    if (collidesWith("enemybullet"))
+    {
+      hp -= 3 * meta.gameScene.difficulty;
+    }
     if (meta.inputManager.getState(KeyEvent.VK_UP)) {
       velocity.y = -5;
     } else if (meta.inputManager.getState(KeyEvent.VK_DOWN)) {
