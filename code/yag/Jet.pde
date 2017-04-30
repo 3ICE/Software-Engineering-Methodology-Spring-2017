@@ -8,7 +8,8 @@ class Jet extends Entity {
   String collisionType = "jet";
   PShape s;
   float topspeed; // maximum speed allowed
-  int radius;
+  int jwidth = 20;
+  int jheight = 30;
   int fuel;
   float firingSpeedCooldown=180;
   int lastTime = 0;
@@ -19,11 +20,10 @@ class Jet extends Entity {
   ParticleSystem boomParticles;
   // constructor
   Jet() {
-    super("jet", new PVector(width / 2, height));
+    super("jet", new PVector(width / 2, height - 60));
     //acceleration = new PVector(5,5);
     topspeed = 10;
     // create the shape of the Jet
-    radius = 29;
     fuel = 2000;
     // slives = 3;
     hp = 100;
@@ -32,10 +32,10 @@ class Jet extends Entity {
     s.fill(102);
     s.stroke(255);
     s.strokeWeight(2);
-    s.vertex(0, -50);
-    s.vertex(radius, 40);
-    s.vertex(0, 25);
-    s.vertex(-radius, 40);
+    s.vertex(0, -jheight / 2);
+    s.vertex(jwidth / 2, jheight / 2);
+    s.vertex(0, jheight / 3);
+    s.vertex(-jwidth / 2, jheight / 2);
     s.endShape(CLOSE);
     shootParticles = new ParticleSystem(new PVector(width/2, 50));
     boomParticles = new ParticleSystem(new PVector(width/2, 50));
@@ -45,9 +45,9 @@ class Jet extends Entity {
   public PVector[] getCollisionMask()
   {
     PVector[] collisionMask = new PVector[3];
-    collisionMask[0] = new PVector(position.x, position.y - 50);
-    collisionMask[1] = new PVector(position.x + radius, position.y + 40);
-    collisionMask[2] = new PVector(position.x - radius, position.y + 40);
+    collisionMask[0] = new PVector(position.x, position.y - jheight / 2);
+    collisionMask[1] = new PVector(position.x + jwidth / 2, position.y + jheight / 2);
+    collisionMask[2] = new PVector(position.x - jwidth / 2, position.y + jheight / 2);
     return collisionMask;
   }
 
@@ -109,7 +109,7 @@ class Jet extends Entity {
   void addParticles(PVector pos){
      for (int i = 0; i < 100; i++){
         boomParticles.addParticle(new PVector(pos.x, pos.y));
-     } 
+     }
   }
 
   // shoot a bullet
