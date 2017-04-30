@@ -13,7 +13,10 @@ class Jet extends Entity {
   float firingSpeedCooldown=180;
   int lastTime = 0;
   int delta = 0;
-
+  // int lives;  the number of times you can die
+  int hp; // the HP of the jet
+  ParticleSystem shootParticles;
+  ParticleSystem boomParticles;
   // constructor
   Jet() {
     super("jet", new PVector(width / 2, height));
@@ -22,6 +25,8 @@ class Jet extends Entity {
     // create the shape of the Jet
     radius = 29;
     fuel = 2000;
+    // slives = 3;
+    hp = 100;
     s = createShape();
     s.beginShape();
     s.fill(102);
@@ -32,6 +37,9 @@ class Jet extends Entity {
     s.vertex(0, 25);
     s.vertex(-radius, 40);
     s.endShape(CLOSE);
+    shootParticles = new ParticleSystem(new PVector(width/2, 50));
+    boomParticles = new ParticleSystem(new PVector(width/2, 50));
+    boomParticles.size = 12;
   }
 
   public PVector[] getCollisionMask()
@@ -44,12 +52,16 @@ class Jet extends Entity {
   }
 
   void update() {
-    if (collidesWith("enemy") || collidesWith("collider"))
+    //3ICE: Removed collidesWith("enemy")||, see comment "ramming" in Enemy.pde
+    if (collidesWith("collider"))
     {
       crash();
       return;
     }
-
+    if (collidesWith("enemybullet"))
+    {
+      hp -= 3 * meta.gameScene.difficulty;
+    }
     if (meta.inputManager.getState(KeyEvent.VK_UP)) {
       velocity.y = -5;
     } else if (meta.inputManager.getState(KeyEvent.VK_DOWN)) {
@@ -81,6 +93,7 @@ class Jet extends Entity {
     //println("a"+delta);
     if (delta > firingSpeedCooldown && meta.inputManager.getState(KeyEvent.VK_SPACE)) {
       shoot();
+      shootParticles.addParticle(new PVector(position.x, position.y-20));
     }
     lastTime = millis();
 
@@ -91,11 +104,19 @@ class Jet extends Entity {
   void draw()
   {
     super.draw();
-
+    
     pushMatrix();
     translate(position.x, position.y);
     shape(s);
     popMatrix();
+    shootParticles.run();
+    boomParticles.run();
+  }
+
+  void addParticles(PVector pos){
+     for (int i = 0; i < 100; i++){
+        boomParticles.addParticle(new PVector(pos.x, pos.y));
+     } 
   }
 
   // shoot a bullet

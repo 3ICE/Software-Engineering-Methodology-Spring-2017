@@ -1,3 +1,12 @@
 .DS_Store
 code/yag/build/
 cache/
+code/yag/scores.csv
+doc/src/tex/*.aux
+doc/src/tex/main.log
+doc/src/tex/main.synctex.gz
+doc/src/tex/main.pdf
+doc/src/tex/main.toc
+doc/src/tex/main.out
+doc/src/tex/main.hst
+doc/src/tex/main.ver
