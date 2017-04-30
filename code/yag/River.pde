@@ -7,6 +7,8 @@ class River extends GameObject {
   int currentStage;
   RiverPart firstPart;
   RiverPart secondPart;
+  float speed = 2;
+  float acceleration = .1;
 
   River(int difficulty) {
     super();
@@ -42,8 +44,8 @@ class River extends GameObject {
     }
     RiverPartInfo secondPartInfo = getRiverPartInfoForDifficulty(currentDifficulty);
 
-    firstPart = new RiverPart(firstPartInfo, 0, width, height);
-    secondPart = new RiverPart(secondPartInfo, -height, width, height);
+    firstPart = new RiverPart(this, firstPartInfo, 0, width, height);
+    secondPart = new RiverPart(this, secondPartInfo, -height, width, height);
 
     addChild(firstPart);
     addChild(secondPart);
@@ -67,6 +69,12 @@ class River extends GameObject {
   void update() {
     super.update();
 
+    if (meta.inputManager.getState(KeyEvent.VK_UP)) {
+      speed = min(10, speed + acceleration);
+    } else if (meta.inputManager.getState(KeyEvent.VK_DOWN)) {
+      speed = max(2, speed - acceleration);
+    }
+
     if (firstPart.y > height) {
       float delta = firstPart.y - height;
       removeChild(firstPart);
@@ -82,7 +90,7 @@ class River extends GameObject {
         info = getRiverPartInfoForDifficulty(currentDifficulty);
       }
 
-      secondPart = new RiverPart(info, -height + delta, width, height);
+      secondPart = new RiverPart(this, info, -height + delta, width, height);
       addChild(secondPart);
     }
   }

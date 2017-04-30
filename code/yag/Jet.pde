@@ -62,13 +62,6 @@ class Jet extends Entity {
     {
       hp -= 3 * meta.gameScene.difficulty;
     }
-    if (meta.inputManager.getState(KeyEvent.VK_UP)) {
-      velocity.y = -5;
-    } else if (meta.inputManager.getState(KeyEvent.VK_DOWN)) {
-      velocity.y = 5;
-    } else {
-      velocity.y = 0;
-    }
 
     if (meta.inputManager.getState(KeyEvent.VK_LEFT)) {
       velocity.x = -3;
@@ -104,7 +97,7 @@ class Jet extends Entity {
   void draw()
   {
     super.draw();
-    
+
     pushMatrix();
     translate(position.x, position.y);
     shape(s);
