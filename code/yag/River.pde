@@ -51,11 +51,11 @@ class River extends GameObject {
 
     RiverPartInfo firstPartInfo;
     if (currentDifficulty == 1) {
-      firstPartInfo = getRiverPartInfoForDifficulty(0);
+      firstPartInfo = getRiverPartInfoForDifficulty(0, -1);
     } else {
-      firstPartInfo = getRiverPartInfoForDifficulty(currentDifficulty);
+      firstPartInfo = getRiverPartInfoForDifficulty(currentDifficulty, -1);
     }
-    RiverPartInfo secondPartInfo = getRiverPartInfoForDifficulty(currentDifficulty);
+    RiverPartInfo secondPartInfo = getRiverPartInfoForDifficulty(currentDifficulty, -1);
 
     firstPart = new RiverPart(this, firstPartInfo, 0, width, height);
     secondPart = new RiverPart(this, secondPartInfo, -height, width, height);
@@ -64,12 +64,28 @@ class River extends GameObject {
     addChild(secondPart);
   }
 
-  RiverPartInfo getRiverPartInfoForDifficulty(int difficulty) {
+  RiverPartInfo getRiverPartInfoForDifficulty(int difficulty, int tile) {
     while (!infosByDifficulty.containsKey(difficulty)) {
       difficulty--;
     }
     ArrayList<RiverPartInfo> infos = infosByDifficulty.get(difficulty);
-    return infos.get(rnd.nextInt(infos.size()));
+    ArrayList<RiverPartInfo> selection;
+    if (tile == -1) {
+      selection = new ArrayList<RiverPartInfo>();
+      for (RiverPartInfo info : infos) {
+        if (info.tile != 2) {
+          selection.add(info);
+        }
+      }
+    } else {
+      selection = new ArrayList<RiverPartInfo>();
+      for (RiverPartInfo info : infos) {
+        if (info.tile == tile) {
+          selection.add(info);
+        }
+      }
+    }
+    return selection.get(rnd.nextInt(selection.size()));
   }
 
   void resetToDifficulty(int difficulty) {
@@ -98,9 +114,9 @@ class River extends GameObject {
       if (currentStage > 10) {
         currentStage = 0;
         currentDifficulty++;
-        info = getRiverPartInfoForDifficulty(-1);
+        info = getRiverPartInfoForDifficulty(currentDifficulty, 2);
       } else {
-        info = getRiverPartInfoForDifficulty(currentDifficulty);
+        info = getRiverPartInfoForDifficulty(currentDifficulty, -1);
       }
 
       secondPart = new RiverPart(this, info, -height + delta, width, height);
