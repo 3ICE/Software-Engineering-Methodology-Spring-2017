@@ -13,6 +13,8 @@ class River extends GameObject {
   PImage riverbank2;
   PImage riverbank3;
   PImage riverbank4;
+  PImage riverbank5;
+  PImage island1;
 
   River(int difficulty) {
     super();
@@ -21,6 +23,8 @@ class River extends GameObject {
     riverbank2 = loadImage("images/riverbank_2.png");
     riverbank3 = loadImage("images/riverbank_3.png");
     riverbank4 = loadImage("images/riverbank_4.png");
+    riverbank5 = loadImage("images/riverbank_5.png");
+    island1 = loadImage("images/island_1.png");
 
     rnd = new Random();
 

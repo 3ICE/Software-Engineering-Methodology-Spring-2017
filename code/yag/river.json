@@ -101,6 +101,160 @@
              "tile":"int"
             },
          "type":"objectgroup",
+         "visible":false,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":20,
+         "name":"bank6",
+         "objects":[
+                {
+                 "height":0,
+                 "id":35,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":96
+                        }, 
+                        {
+                         "x":96,
+                         "y":192
+                        }, 
+                        {
+                         "x":96,
+                         "y":448
+                        }, 
+                        {
+                         "x":0,
+                         "y":544
+                        }, 
+                        {
+                         "x":0,
+                         "y":640
+                        }, 
+                        {
+                         "x":128,
+                         "y":640
+                        }, 
+                        {
+                         "x":128,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"bank",
+                 "visible":true,
+                 "width":0,
+                 "x":512,
+                 "y":0
+                }, 
+                {
+                 "height":0,
+                 "id":36,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":128,
+                         "y":0
+                        }, 
+                        {
+                         "x":128,
+                         "y":96
+                        }, 
+                        {
+                         "x":32,
+                         "y":192
+                        }, 
+                        {
+                         "x":32,
+                         "y":448
+                        }, 
+                        {
+                         "x":128,
+                         "y":544
+                        }, 
+                        {
+                         "x":128,
+                         "y":640
+                        }, 
+                        {
+                         "x":0,
+                         "y":640
+                        }],
+                 "rotation":0,
+                 "type":"bank",
+                 "visible":true,
+                 "width":0,
+                 "x":0,
+                 "y":0
+                }, 
+                {
+                 "height":0,
+                 "id":38,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":96,
+                         "y":-96
+                        }, 
+                        {
+                         "x":160,
+                         "y":-96
+                        }, 
+                        {
+                         "x":256,
+                         "y":0
+                        }, 
+                        {
+                         "x":256,
+                         "y":128
+                        }, 
+                        {
+                         "x":160,
+                         "y":224
+                        }, 
+                        {
+                         "x":96,
+                         "y":224
+                        }, 
+                        {
+                         "x":0,
+                         "y":128
+                        }],
+                 "rotation":0,
+                 "type":"bank",
+                 "visible":true,
+                 "width":0,
+                 "x":192,
+                 "y":256
+                }],
+         "opacity":1,
+         "properties":
+            {
+             "difficulty":1,
+             "tile":5
+            },
+         "propertytypes":
+            {
+             "difficulty":"int",
+             "tile":"int"
+            },
+         "type":"objectgroup",
          "visible":true,
          "width":20,
          "x":0,
@@ -577,12 +731,12 @@
              "tile":"int"
             },
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":20,
          "x":0,
          "y":0
         }],
- "nextobjectid":30,
+ "nextobjectid":39,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
