@@ -7,12 +7,10 @@ class RiverPart extends GameObject {
   ArrayList<Entity> entities;
   River river;
 
-  PImage img;
-
   RiverPart(River river, RiverPartInfo info, float y, float pwidth, float pheight) {
     super();
-    img = loadImage("images/riverbank_1.png");
 
+    this.info = info;
     this.river = river;
     this.y = y;
 
@@ -70,11 +68,36 @@ class RiverPart extends GameObject {
 
   void draw()
   {
-    super.draw(); //<>//
-    image(img, 0, floor(y));
-    pushMatrix();
-    scale(-1.0, 1.0);
-    image(img,-width, floor(y));
-    popMatrix();
+    super.draw();
+
+    switch (info.tile) {
+      case 1: {
+        PImage img = river.riverbank1;
+        image(img, 0, floor(y));
+        pushMatrix();
+        scale(-1.0, 1.0);
+        image(img,-width, floor(y));
+        popMatrix();
+        break;
+      }
+      case 2: {
+        PImage img = river.riverbank2;
+        image(img, 0, floor(y));
+        pushMatrix();
+        scale(-1.0, 1.0);
+        image(img,-width, floor(y));
+        popMatrix();
+        break;
+      }
+      case 3: {
+        PImage img = river.riverbank3;
+        image(img, 0, floor(y));
+        pushMatrix();
+        scale(-1.0, -1.0);
+        image(img,-width, -height-floor(y));
+        popMatrix();
+        break;
+      }
+    }
   }
 }

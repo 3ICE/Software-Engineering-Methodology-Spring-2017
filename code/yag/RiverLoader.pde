@@ -16,6 +16,9 @@ class RiverLoader {
       int difficulty =
         properties.hasKey("difficulty") ? properties.getInt("difficulty") :
                                           -2;
+      int tile =
+        properties.hasKey("tile") ? properties.getInt("tile") :
+                                    1;
       JSONArray objects = layer.getJSONArray("objects");
       ArrayList<PVector[]> shapes = new ArrayList<PVector[]>();
       ArrayList<RiverEntityInfo> entities = new ArrayList<RiverEntityInfo>();
@@ -54,7 +57,7 @@ class RiverLoader {
         }
       }
 
-      RiverPartInfo bank = new RiverPartInfo(difficulty, shapes, entities);
+      RiverPartInfo bank = new RiverPartInfo(tile, difficulty, shapes, entities);
       banks.add(bank);
     }
 

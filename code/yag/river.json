@@ -324,14 +324,16 @@
          "opacity":1,
          "properties":
             {
-             "difficulty":-1
+             "difficulty":-1,
+             "tile":2
             },
          "propertytypes":
             {
-             "difficulty":"int"
+             "difficulty":"int",
+             "tile":"int"
             },
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":20,
          "x":0,
          "y":0
@@ -564,14 +566,16 @@
          "opacity":1,
          "properties":
             {
-             "difficulty":2
+             "difficulty":2,
+             "tile":3
             },
          "propertytypes":
             {
-             "difficulty":"int"
+             "difficulty":"int",
+             "tile":"int"
             },
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":20,
          "x":0,
          "y":0

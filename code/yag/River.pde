@@ -9,9 +9,16 @@ class River extends GameObject {
   RiverPart secondPart;
   float speed = 2;
   float acceleration = .1;
+  PImage riverbank1;
+  PImage riverbank2;
+  PImage riverbank3;
 
   River(int difficulty) {
     super();
+
+    riverbank1 = loadImage("images/riverbank_1.png");
+    riverbank2 = loadImage("images/riverbank_2.png");
+    riverbank3 = loadImage("images/riverbank_3.png");
 
     rnd = new Random();
 
