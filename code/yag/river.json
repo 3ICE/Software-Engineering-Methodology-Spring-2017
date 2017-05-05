@@ -24,7 +24,7 @@
                         }, 
                         {
                          "x":256,
-                         "y":352
+                         "y":384
                         }, 
                         {
                          "x":256,
@@ -60,7 +60,7 @@
                         }, 
                         {
                          "x":-256,
-                         "y":352
+                         "y":384
                         }, 
                         {
                          "x":-128,
@@ -92,14 +92,16 @@
          "opacity":1,
          "properties":
             {
-             "difficulty":0
+             "difficulty":0,
+             "tile":4
             },
          "propertytypes":
             {
-             "difficulty":"int"
+             "difficulty":"int",
+             "tile":"int"
             },
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":20,
          "x":0,
          "y":0

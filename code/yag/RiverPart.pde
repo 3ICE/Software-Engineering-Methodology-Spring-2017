@@ -98,6 +98,15 @@ class RiverPart extends GameObject {
         popMatrix();
         break;
       }
+      case 4: {
+        PImage img = river.riverbank4;
+        image(img, 0, floor(y));
+        pushMatrix();
+        scale(-1.0, 1.0);
+        image(img,-width, floor(y));
+        popMatrix();
+        break;
+      }
     }
   }
 }
